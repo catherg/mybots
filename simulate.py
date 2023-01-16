@@ -1,8 +1,11 @@
+import random
 import pyrosim.pyrosim as pyrosim
 import pybullet as p
 import pybullet_data
 import time
 import numpy
+import math
+
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
 sleep = 1/60
@@ -23,7 +26,7 @@ for i in range(0, 500):
 
     controlMode = p.POSITION_CONTROL,
 
-    targetPosition = 0.65,
+    targetPosition = random.randrange(-math.pi / 2, math.pi/2),
 
     maxForce = 500)
 
@@ -34,7 +37,7 @@ for i in range(0, 500):
 
     controlMode = p.POSITION_CONTROL,
 
-    targetPosition = -0.65,
+    targetPosition = random.randrange(-math.pi / 2, math.pi/2),
 
     maxForce = 500)
 
