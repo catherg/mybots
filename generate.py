@@ -20,6 +20,8 @@ def Create_Robot():
     pyrosim.Send_Joint(name = "Torso_Frontleg" , parent= "Torso" , child = "Frontleg" , type = "revolute", position = [1,0,1])
     pyrosim.Send_Cube(name="Frontleg", pos=[-0.5,0,-0.5] , size=[length,width,height])
     pyrosim.End()
+def Generate_Body():
+
 
 
 Create_World()
