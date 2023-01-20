@@ -5,6 +5,7 @@ import time
 import constants as c
 from world import WORLD
 from robot import ROBOT
+from pyrosim.neuralNetwork import NEURAL_NETWORK
 
 class SIMULATION:
     def __init__(self):
@@ -18,6 +19,7 @@ class SIMULATION:
     def Run(self):
         for i in range(0, 1000):
             self.robot.Sense()
+            self.robot.Think()
             self.robot.Act()
             #backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("Backleg")
  #   frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("Frontleg")
