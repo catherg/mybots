@@ -48,15 +48,6 @@ def Generate_Brain():
     pyrosim.Send_Synapse( sourceNeuronName = 3 , targetNeuronName = 1 , weight = 0.0 )
     pyrosim.Send_Synapse( sourceNeuronName = 2 , targetNeuronName = 4 , weight = 0.0 )
 
-    sensors = ["Torso", "Backleg", "Frontleg"]
-
-    motors = ["Torso_Backleg", "Torso_Frontleg"]
-
-    for sensor in sensors:
-        for motor in motors:
-            pyrosim.Send_Synapse(sourceNeuronName = sensor , targetNeuronName = motor , weight = -1 + 2 * random.random() )
-
-    pyrosim.End()
     
 
 
