@@ -1,4 +1,5 @@
 import pyrosim.pyrosim as pyrosim
+import random
 
 length = 1
 width = 1
@@ -41,7 +42,18 @@ def Generate_Brain():
     pyrosim.Send_Sensor_Neuron(name = 2 , linkName = "Frontleg")
     pyrosim.Send_Motor_Neuron( name = 3 , jointName = "Torso_Backleg")
     pyrosim.Send_Motor_Neuron( name = 4 , jointName = "Torso_Frontleg")
+
+    sensors = ["Torso", "Backleg", "Frontleg"]
+
+    motors = ["Torso_Backleg", "Torso_Frontleg"]
+
+    for sensor in sensors:
+        for motor in motors:
+            pyrosim.send_Synapse(sourceNeuronName = sensor , targetNeuronName = motor , weight = -1 + 2 * random.random() )
+
     pyrosim.End()
+
+
 
 
 
@@ -51,19 +63,3 @@ Generate_Body()
 Generate_Brain()
 
 
-# for k in range(0,5):
-#     z = 0.5
-#     length = 1
-#     width = 1
-#     height = 1
-#     for j in range(0,5):
-#         z = 0.5
-#         length = 1
-#         width = 1
-#         height = 1
-#         for i in range(0,10):
-#             length = 0.9 * length
-#             width = 0.9 * width
-#             height = 0.9 * height
-#             pyrosim.Send_Cube(name="Box", pos=[k,j,z] , size=[length,width,height])
-#             z = z + height
