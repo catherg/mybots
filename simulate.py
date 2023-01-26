@@ -7,12 +7,14 @@
 #import math
 import constants as c
 from simulation import SIMULATION
+import sys
 #from robot import ROBOT
 
+directOrGUI = sys.argv[1]
 
-
-simulation = SIMULATION()
+simulation = SIMULATION(directOrGUI)
 simulation.Run()
+simulation.Get_Fitness()
 
 ##amplitude = numpy.pi / 4
 ##frequency = 0.04

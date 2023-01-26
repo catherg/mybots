@@ -73,9 +73,10 @@ class NEURON:
 
         # self.Print_Type()
 
-        self.Print_Value()
+       ## self.Print_Value()
 
         # print("")
+        pass
 
     def Set_Value(self,value):
 

@@ -16,3 +16,5 @@ front_phaseOffset = 0 - 50
 sleep = 1/20
 
 maxForce = 500
+
+numberofGenerations = 10

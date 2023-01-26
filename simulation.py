@@ -8,8 +8,11 @@ from robot import ROBOT
 from pyrosim.neuralNetwork import NEURAL_NETWORK
 
 class SIMULATION:
-    def __init__(self):
-        self.physicsClient = p.connect(p.GUI)
+    def __init__(self, directOrGUI):
+        if directOrGUI == "DIRECT":
+            p.connect(p.DIRECT)
+        else:
+            p.connect(p.GUI)
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(0,0,-9.8)
         #pyrosim.Prepare_To_Simulate(self.robotId)
@@ -21,10 +24,11 @@ class SIMULATION:
             self.robot.Sense()
             self.robot.Think()
             self.robot.Act()
-            #backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("Backleg")
- #   frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("Frontleg")
-
             p.stepSimulation()
             time.sleep(c.sleep)
+
     def __del__(self):
-        p.disconnect()  
+        p.disconnect() 
+
+    def Get_Fitness(self):
+        self.robot.Get_Fitness()
