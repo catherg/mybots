@@ -18,3 +18,5 @@ sleep = 1/20
 maxForce = 500
 
 numberofGenerations = 10
+
+populationSize = 2

@@ -8,7 +8,8 @@ from robot import ROBOT
 from pyrosim.neuralNetwork import NEURAL_NETWORK
 
 class SIMULATION:
-    def __init__(self, directOrGUI):
+    def __init__(self, directOrGUI, solutionID):
+        self.solutionID = solutionID
         if directOrGUI == "DIRECT":
             p.connect(p.DIRECT)
         else:
@@ -17,7 +18,7 @@ class SIMULATION:
         p.setGravity(0,0,-9.8)
         #pyrosim.Prepare_To_Simulate(self.robotId)
         self.world = WORLD()
-        self.robot = ROBOT()
+        self.robot = ROBOT(solutionID)
 
     def Run(self):
         for i in range(0, 100):
@@ -30,5 +31,5 @@ class SIMULATION:
     def __del__(self):
         p.disconnect() 
 
-    def Get_Fitness(self):
-        self.robot.Get_Fitness()
+    def Get_Fitness(self, solutionID):
+        self.robot.Get_Fitness(solutionID)
