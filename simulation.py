@@ -9,6 +9,7 @@ from pyrosim.neuralNetwork import NEURAL_NETWORK
 
 class SIMULATION:
     def __init__(self, directOrGUI):
+        self.directOrGUI = directOrGUI
         if directOrGUI == "DIRECT":
             p.connect(p.DIRECT)
         else:
@@ -25,6 +26,7 @@ class SIMULATION:
             self.robot.Think()
             self.robot.Act()
             p.stepSimulation()
+        if self.directOrGUI == "GUI":
             time.sleep(c.sleep)
 
     def __del__(self):
