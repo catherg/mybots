@@ -21,7 +21,7 @@ class SIMULATION:
         self.robot = ROBOT(solutionID)
 
     def Run(self):
-        for i in range(0, 500):
+        for i in range(0, 100):
             self.robot.Sense()
             self.robot.Think()
             self.robot.Act()
