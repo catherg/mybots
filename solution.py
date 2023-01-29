@@ -30,7 +30,7 @@ class SOLUTION:
         while not os.path.exists("fitness"+ str(self.myID) + ".txt"):
             time.sleep(0.01)
         f = open("fitness"+ str(self.myID) + ".txt", "r")
-        self.fitness = float(f.read())
+        self.fitness = float(f.readline())
         f.close()
         os.system("rm " + "fitness"+ str(self.myID) + ".txt")
 
