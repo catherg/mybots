@@ -15,7 +15,7 @@ class SOLUTION:
 
     def Evaluate(self, mode):
         self.Create_Brain()
-        os.system("python3 simulate.py " + mode +  " " + str(self.myID) + " &")
+        os.system("python3 simulate.py " + mode +  " " + str(self.myID) + "2&>1" + " &")
         while not os.path.exists("fitness"+ str(self.myID) + ".txt"):
             time.sleep(0.01)
         f = open("fitness" + str(self.myID) + ".txt", "r")
@@ -24,7 +24,7 @@ class SOLUTION:
 
     def Start_Simulation(self, mode):
         self.Create_Brain()
-        os.system("python3 simulate.py " + mode +  " " + str(self.myID) + " &")
+        os.system("python3 simulate.py " + mode +  " " + str(self.myID) + "2&>1" + " &")
 
     def Wait_For_Simulation_To_End(self):
         while not os.path.exists("fitness"+ str(self.myID) + ".txt"):
