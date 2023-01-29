@@ -18,8 +18,8 @@ class SOLUTION:
         os.system("python3 simulate.py " + mode +  " " + str(self.myID) + " &")
         while not os.path.exists("fitness"+ str(self.myID) + ".txt"):
             time.sleep(0.01)
-        f = open("fitness"+ str(self.myID) + ".txt", "r")
-        self.fitness = float(f.read())
+        f = open("fitness" + str(self.myID) + ".txt", "r")
+        self.fitness = float(f.readline())
         f.close()
 
     def Start_Simulation(self, mode):
