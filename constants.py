@@ -17,6 +17,6 @@ sleep = 1/20
 
 maxForce = 500
 
-numberofGenerations = 10
+numberofGenerations = 1
 
-populationSize = 10
+populationSize = 1
