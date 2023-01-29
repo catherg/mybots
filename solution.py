@@ -17,7 +17,7 @@ class SOLUTION:
         self.Create_Brain()
         os.system("python3 simulate.py " + mode +  " " + str(self.myID) + "2&>1" + " &")
         while not os.path.exists("fitness"+ str(self.myID) + ".txt"):
-            time.sleep(0.01)
+            time.sleep(0.1)
         f = open("fitness" + str(self.myID) + ".txt", "r")
         self.fitness = float(f.readline())
         f.close()
