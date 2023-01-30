@@ -10,6 +10,7 @@ class SOLUTION:
     def __init__(self, nextAvailableID):
         self.myID = nextAvailableID
         self.weights = (numpy.random.rand(c.numSensorNeurons,c.numMotorNeurons) * c.numMotorNeurons) - 1
+        print("WEIGHTS:",  self.weights, "\n")
         
        # self.weights = self.weights * c.numMotorNeurons - 1
 
@@ -89,8 +90,8 @@ class SOLUTION:
 
         
     def Mutate(self):
-        randomRow = random.randint(0,c.numMotorNeurons)
-        randomColumn = random.randint(0,c.numSensorNeurons)
+        randomRow = random.randint(0,c.numSensorNeurons - 1)
+        randomColumn = random.randint(0,c.numMotorNeurons - 1)
         self.weights[randomRow, randomColumn] = random.random() * c.numMotorNeurons - 1
 
     def Set_ID(self, uniqueID):
