@@ -9,36 +9,10 @@ import time
 class SOLUTION:
     def __init__(self, nextAvailableID):
         self.myID = nextAvailableID
-        self.weights = numpy.array([[numpy.random.rand(), numpy.random.rand(), numpy.random.rand(),
-         numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
-        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(),
-         numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
-        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(),
-        numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
-        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), 
-        numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
-        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), 
-        numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
-        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), 
-        numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
-        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), 
-        numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
-        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), 
-        numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
-        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), 
-        numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()]])
+        self.weights = (numpy.random.rand(c.numSensorNeurons,c.numMotorNeurons) * 2) - 1
+        
         self.weights = self.weights * c.numMotorNeurons - 1
 
-    def Evaluate(self, mode):
-        self.Create_Brain()
-        os.system("python3 simulate.py " + mode +  " " + str(self.myID) + " 2&>1 &")
-        while not os.path.exists("fitness"+ str(self.myID) + ".txt"):
-            time.sleep(0.1)
-        f = open("fitness" + str(self.myID) + ".txt", "r")
-        while f.readline() != None:
-            self.fitness = float(f.read())
-            self.fitness = float(f.readline())
-        f.close()
 
     def Start_Simulation(self, mode):
         self.Create_Brain()
