@@ -9,11 +9,24 @@ import time
 class SOLUTION:
     def __init__(self, nextAvailableID):
         self.myID = nextAvailableID
-        self.weights = numpy.array([[numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
-        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
-        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
-        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(),numpy.random.rand()],
-        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(),numpy.random.rand()]])
+        self.weights = numpy.array([[numpy.random.rand(), numpy.random.rand(), numpy.random.rand(),
+         numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
+        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(),
+         numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
+        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(),
+        numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
+        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), 
+        numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
+        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), 
+        numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
+        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), 
+        numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
+        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), 
+        numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
+        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), 
+        numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()],
+        [numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), 
+        numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand(), numpy.random.rand()]])
         self.weights = self.weights * c.numMotorNeurons - 1
 
     def Evaluate(self, mode):
@@ -22,6 +35,8 @@ class SOLUTION:
         while not os.path.exists("fitness"+ str(self.myID) + ".txt"):
             time.sleep(0.1)
         f = open("fitness" + str(self.myID) + ".txt", "r")
+        #while f.read() != None:
+         #  self.fitness = float(f.read())
         self.fitness = float(f.readline())
         f.close()
 
@@ -52,8 +67,18 @@ class SOLUTION:
         pyrosim.Send_Cube(name="Frontleg", pos=[0,0.5,0] , size=[0.2,1,0.2])
         pyrosim.Send_Joint(name = "Torso_Leftleg" , parent= "Torso" , child = "Leftleg" , type = "revolute", position = [-0.5,0,1], jointAxis = "0 1 0")
         pyrosim.Send_Cube(name="Leftleg", pos=[-0.5,0,0] , size=[1,0.2,0.2])
-        pyrosim.Send_Joint(name = "Torso_Rightleg" , parent= "Torso" , child = "Leftleg" , type = "revolute", position = [0.5,0,1], jointAxis = "0 1 0")
+        pyrosim.Send_Joint(name = "Torso_Rightleg" , parent= "Torso" , child = "Rightleg" , type = "revolute", position = [0.5,0,1], jointAxis = "0 1 0")
         pyrosim.Send_Cube(name="Rightleg", pos=[0.5,0,0] , size=[1,0.2,0.2])
+        pyrosim.Send_Joint(name = "Frontleg_FrontLowerLeg" , parent= "Frontleg" , child = "FrontLowerLeg" , type = "revolute", position = [0,1,0], jointAxis = "1 0 0")
+        pyrosim.Send_Cube(name="FrontLowerLeg", pos=[0,0,-0.5] , size=[0.2,0.2,1])
+        pyrosim.Send_Joint(name = "Backleg_BackLowerLeg" , parent= "Backleg" , child = "BackLowerLeg" , type = "revolute", position = [0,-1,0], jointAxis = "1 0 0")
+        pyrosim.Send_Cube(name="BackLowerLeg", pos=[0,0,-0.5] , size=[0.2,0.2,1])
+
+        pyrosim.Send_Joint(name = "Rightleg_RightLowerLeg" , parent= "Rightleg" , child = "RightLowerLeg" , type = "revolute", position = [1,0,0], jointAxis = "0 1 0")
+        pyrosim.Send_Cube(name="RightLowerLeg", pos=[0,0,-0.5] , size=[0.2,0.2,1])
+        pyrosim.Send_Joint(name = "Leftleg_LeftLowerLeg" , parent= "Leftleg" , child = "LeftLowerLeg" , type = "revolute", position = [-1,0,0], jointAxis = "0 1 0")
+        pyrosim.Send_Cube(name="LeftLowerLeg", pos=[0,0,-0.5] , size=[0.2,0.2,1])
+
         pyrosim.End()
 
 
@@ -64,10 +89,18 @@ class SOLUTION:
         pyrosim.Send_Sensor_Neuron(name = 2 , linkName = "Frontleg")
         pyrosim.Send_Sensor_Neuron(name = 3 , linkName = "Leftleg")
         pyrosim.Send_Sensor_Neuron(name = 4 , linkName = "Rightleg")
-        pyrosim.Send_Motor_Neuron( name = 5 , jointName = "Torso_Backleg")
-        pyrosim.Send_Motor_Neuron( name = 6 , jointName = "Torso_Frontleg")
-        pyrosim.Send_Motor_Neuron( name = 7 , jointName = "Torso_Leftleg")
-        pyrosim.Send_Motor_Neuron( name = 8 , jointName = "Torso_Rightleg")
+        pyrosim.Send_Sensor_Neuron(name = 5 , linkName = "FrontLowerLeg")
+        pyrosim.Send_Sensor_Neuron(name = 6 , linkName = "BackLowerLeg")
+        pyrosim.Send_Sensor_Neuron(name = 7 , linkName = "RightLowerLeg")
+        pyrosim.Send_Sensor_Neuron(name = 8 , linkName = "LeftLowerLeg")
+        pyrosim.Send_Motor_Neuron( name = 9 , jointName = "Torso_Backleg")
+        pyrosim.Send_Motor_Neuron( name = 10 , jointName = "Torso_Frontleg")
+        pyrosim.Send_Motor_Neuron( name = 11 , jointName = "Torso_Leftleg")
+        pyrosim.Send_Motor_Neuron( name = 12 , jointName = "Torso_Rightleg")
+        pyrosim.Send_Motor_Neuron( name = 13 , jointName = "Frontleg_FrontLowerLeg")
+        pyrosim.Send_Motor_Neuron( name = 14 , jointName = "Backleg_BackLowerLeg")
+        pyrosim.Send_Motor_Neuron( name = 15 , jointName = "Rightleg_RightLowerLeg")
+        pyrosim.Send_Motor_Neuron( name = 16 , jointName = "Leftleg_LeftLowerLeg")
     
         for currentRow in range(0,c.numSensorNeurons):
             for currentColumn in range(0,c.numMotorNeurons):

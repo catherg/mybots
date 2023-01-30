@@ -17,10 +17,10 @@ sleep = 1/20
 
 maxForce = 500
 
-numberofGenerations = 1
+numberofGenerations = 10
 
-populationSize = 1
+populationSize = 10
 
-numMotorNeurons = 4
+numMotorNeurons = 6
 
-numSensorNeurons = 5
+numSensorNeurons = 7
