@@ -9,9 +9,9 @@ import time
 class SOLUTION:
     def __init__(self, nextAvailableID):
         self.myID = nextAvailableID
-        self.weights = (numpy.random.rand(c.numSensorNeurons,c.numMotorNeurons) * 2) - 1
+        self.weights = (numpy.random.rand(c.numSensorNeurons,c.numMotorNeurons) * c.numMotorNeurons) - 1
         
-        self.weights = self.weights * c.numMotorNeurons - 1
+       # self.weights = self.weights * c.numMotorNeurons - 1
 
 
     def Start_Simulation(self, mode):
@@ -24,8 +24,8 @@ class SOLUTION:
         while not os.path.exists("fitness"+ str(self.myID) + ".txt"):
             time.sleep(0.1)
         f = open("fitness"+ str(self.myID) + ".txt", "r")
-        line = f.readline()
-        if line != '\n' and line != "  ":
+        line = f.read()
+        if line != '\n':
             #print("READING:",line, "end of reading")
             self.fitness = float(line)
         f.close()
@@ -90,7 +90,7 @@ class SOLUTION:
         
     def Mutate(self):
         randomRow = random.randint(0,c.numMotorNeurons)
-        randomColumn = random.randint(0,1)
+        randomColumn = random.randint(0,c.numSensorNeurons)
         self.weights[randomRow, randomColumn] = random.random() * c.numMotorNeurons - 1
 
     def Set_ID(self, uniqueID):
