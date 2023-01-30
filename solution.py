@@ -35,21 +35,25 @@ class SOLUTION:
         while not os.path.exists("fitness"+ str(self.myID) + ".txt"):
             time.sleep(0.1)
         f = open("fitness" + str(self.myID) + ".txt", "r")
-        #while f.read() != None:
-         #  self.fitness = float(f.read())
-        self.fitness = float(f.readline())
+        while f.readline() != None:
+            self.fitness = float(f.read())
+            self.fitness = float(f.readline())
         f.close()
 
     def Start_Simulation(self, mode):
         self.Create_Brain()
         self.Create_Body()
         os.system("python3 simulate.py " + mode +  " " + str(self.myID) + " 2&>1 &")
+        #print("SIMULATION CREATED!!!!")
 
     def Wait_For_Simulation_To_End(self):
         while not os.path.exists("fitness"+ str(self.myID) + ".txt"):
-            time.sleep(0.01)
+            time.sleep(0.1)
         f = open("fitness"+ str(self.myID) + ".txt", "r")
-        self.fitness = float(f.readline())
+        line = f.readline()
+        if line != '\n' and line != "  ":
+            #print("READING:",line, "end of reading")
+            self.fitness = float(line)
         f.close()
         os.system("rm " + "fitness"+ str(self.myID) + ".txt")
 
