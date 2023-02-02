@@ -14,7 +14,7 @@ class PARALLEL_HILL_CLIMBER:
             self.parents[i] = SOLUTION(self.nextAvailableID)
             self.nextAvailableID = self.nextAvailableID + 1
         
-    
+
     def Evolve(self):
         self.Evaluate(self.parents)
         for currentGeneration in range(c.numberofGenerations):
@@ -47,6 +47,7 @@ class PARALLEL_HILL_CLIMBER:
 
     def Select(self):
         for i in range(0, c.populationSize):
+            ## less than sign changed
             if self.parents[i].fitness > self.children[i].fitness:
                 self.parents[i] = self.children[i]
 
