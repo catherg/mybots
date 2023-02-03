@@ -9,6 +9,9 @@ class SENSOR:
     def Get_Value(self, i):
         self.values[i] = pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
 
+    def Set_Value(self, i, j):
+        self.values[i] = j
+
     def Save_Values(self):
         numpy.save('data/backLegSensor.npy', self.values, allow_pickle = True, fix_imports = True)
        ## numpy.save('data/frontLegSensor.npy', self.values, allow_pickle = True, fix_imports = True)

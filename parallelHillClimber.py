@@ -9,6 +9,7 @@ class PARALLEL_HILL_CLIMBER:
         os.system("rm fitness*.txt")
         self.nextAvailableID = 0
         self.parents = {}
+        self.flag = 1
 
         for i in range(0, c.populationSize):
             self.parents[i] = SOLUTION(self.nextAvailableID)
@@ -48,10 +49,10 @@ class PARALLEL_HILL_CLIMBER:
     def Select(self):
         ##commented out to randomize
         for i in range(0, c.populationSize):
-            ## less than sign changed
-            if self.parents[i].fitness < self.children[i].fitness:
+        #    ## less than sign changed
+            if self.parents[i].fitness > self.children[i].fitness:
                self.parents[i] = self.children[i]
-        #pass
+        
 
     def Print(self):
         for i in range(0, c.populationSize):
@@ -61,13 +62,16 @@ class PARALLEL_HILL_CLIMBER:
         lowest = 0
         for i in range(0, c.populationSize):
             if self.parents[i].fitness > self.parents[lowest].fitness:
-                lowest = i * 3
+                lowest = i
 
         print("LOWEST:", self.parents[lowest].fitness)
         self.parents[lowest].Start_Simulation("GUI")
 
     def Evaluate(self, solutions):
         for i in range(0, c.populationSize):
+            if self.flag == 1:
+                solutions[i].Start_Simulation("GUI")
+                self.flag = 0
             solutions[i].Start_Simulation("DIRECT")
 
         for i in range(0, c.populationSize):

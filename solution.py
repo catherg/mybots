@@ -41,9 +41,9 @@ class SOLUTION:
         pyrosim.Start_URDF("body.urdf")
         pyrosim.Send_Cube(name="Torso", pos=[0,0,1] , size=[0.75,4.5,0.75])
         pyrosim.Send_Joint(name = "Torso_Backleg" , parent= "Torso" , child = "Backleg" , type = "revolute", position = [0.375,0,1], jointAxis = "1 0 0")
-        pyrosim.Send_Cube(name="Backleg", pos=[0.15,0,0] , size=[0.3,0.3,2.5])
+        pyrosim.Send_Cube(name="Backleg", pos=[0.15,0,0.25] , size=[0.3,0.3,2.5])
         pyrosim.Send_Joint(name = "Torso_Frontleg" , parent= "Torso" , child = "Frontleg" , type = "revolute", position = [-0.375,0,1], jointAxis = "1 0 0")
-        pyrosim.Send_Cube(name="Frontleg", pos=[-0.15,0,0] , size=[0.3,0.3,2.5])
+        pyrosim.Send_Cube(name="Frontleg", pos=[-0.15,0,0.25] , size=[0.3,0.3,2.5])
 
         pyrosim.End()
 
