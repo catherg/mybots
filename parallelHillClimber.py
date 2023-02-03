@@ -46,10 +46,12 @@ class PARALLEL_HILL_CLIMBER:
             self.children[i].Mutate()
 
     def Select(self):
+        ##commented out to randomize
         for i in range(0, c.populationSize):
             ## less than sign changed
-            if self.parents[i].fitness > self.children[i].fitness:
-                self.parents[i] = self.children[i]
+            if self.parents[i].fitness < self.children[i].fitness:
+               self.parents[i] = self.children[i]
+        #pass
 
     def Print(self):
         for i in range(0, c.populationSize):
@@ -58,8 +60,8 @@ class PARALLEL_HILL_CLIMBER:
     def Show_Best(self):
         lowest = 0
         for i in range(0, c.populationSize):
-            if self.parents[i].fitness < self.parents[lowest].fitness:
-                lowest = i
+            if self.parents[i].fitness > self.parents[lowest].fitness:
+                lowest = i * 3
 
         print("LOWEST:", self.parents[lowest].fitness)
         self.parents[lowest].Start_Simulation("GUI")
