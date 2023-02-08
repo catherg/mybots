@@ -42,9 +42,10 @@ class SOLUTION:
 
         cube_pos = [0,0,1]
         joint_pos = [1.5,0,1]
+
         for i in range(c.numSensorNeurons):
-            ## figure out pos
-            cube_pos[0] += i  * 1.5
+            ## figure
+            cube_pos[0] += 1.5
             pyrosim.Send_Cube(name= "cube" + str(i), pos=cube_pos , size=[3,1,1])
             if i > 0:
                 ## figure out pos
@@ -59,11 +60,15 @@ class SOLUTION:
 
 
     def Create_Brain(self):
+        
         pyrosim.Start_NeuralNetwork("brain"+ str(self.myID) + ".nndf")
         for i in range(c.numSensorNeurons):
             pyrosim.Send_Sensor_Neuron(name = i, linkName = "cube" + str(i))
+
+        increment = 1
         for j in range(c.numSensorNeurons, c.numSensorNeurons + c.numMotorNeurons):
-            pyrosim.Send_Motor_Neuron(name = j , jointName = str(j - 1) + "_" + str(j))
+            pyrosim.Send_Motor_Neuron(name = j , jointName = str(increment - 1) + "_" + str(increment))
+            increment = increment + 1
 
         #pyrosim.Send_Sensor_Neuron(name = 0 , linkName = "Torso")
         #pyrosim.Send_Sensor_Neuron(name = 1 , linkName = "Backleg")
