@@ -10,7 +10,7 @@ class SOLUTION:
     def __init__(self, nextAvailableID):
         self.myID = nextAvailableID
         self.weights = (numpy.random.rand(c.numSensorNeurons,c.numMotorNeurons) * c.numMotorNeurons) - 1
-        print("WEIGHTS:",  self.weights, "\n")
+        #print("WEIGHTS:",  self.weights, "\n")
         
        # self.weights = self.weights * c.numMotorNeurons - 1
 
