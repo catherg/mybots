@@ -63,17 +63,15 @@ class SOLUTION:
 
             self.cubepositions[i] = cube_pos
 
-        print("passed")  
         for j in range(self.nummotors):
             joint_pos = self.cubepositions[j]
             joint_pos[0] += rand_num_x / 2
             pyrosim.Send_Joint(name = "Torso" + str(i) + "_" + "Torso" + str(i + 1), parent= "Torso" + str(i) ,
             child = "Torso" + str(i + 1) , type = "revolute", position =joint_pos, jointAxis = "1 0 0")
 
-    
-
-
         pyrosim.End()
+
+
 
 
             #### check 0 or 1, if 1 make it green add it to sensor lists, if 0 then make it blue
