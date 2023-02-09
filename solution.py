@@ -33,7 +33,7 @@ class SOLUTION:
         f = open("fitness"+ str(self.myID) + ".txt", "r")
         line = f.read()
         if line != '\n':
-            #print("READING:",line, "end of reading")
+            print("READING:",line, "end of reading")
             self.fitness = float(line)
         f.close()
         os.system("rm " + "fitness"+ str(self.myID) + ".txt")
@@ -59,13 +59,15 @@ class SOLUTION:
             rand_y = numpy.random.uniform(1,3)
             rand_z = numpy.random.uniform(1,3)
             cube_size = [rand_x, rand_y, rand_z]
+            print("CUBE SIZE:", cube_size)
             if i == 0:
+                cube_pos[1] = rand_y / 2
                 pyrosim.Send_Cube(name="Torso", pos=cube_pos , size=cube_size)
-                print("Torso")
+            
             else:
                 cube_pos[0] = rand_x / 2
                 pyrosim.Send_Cube(name="Torso" + str(i), pos=cube_pos , size=cube_size)
-                print("Torso" + str(i))
+                
 
             self.cubepositions[i] = cube_pos
             self.xlength[i] = rand_x
@@ -73,6 +75,7 @@ class SOLUTION:
         joint_pos = [0,0,1]
         for j in range(c.numMotorNeurons):
             if j == 0:
+                joint_pos = self.cubepositions[j]
                 joint_pos[0] = self.xlength[j] / 2
                 pyrosim.Send_Joint(name = "Torso_Torso1" , parent= "Torso" , child = "Torso1" ,
                 type = "revolute", position = joint_pos, jointAxis = "1 0 0")
