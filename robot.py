@@ -48,6 +48,7 @@ class ROBOT:
         ##    self.motors[jointName].Set_Value(self.robotId, t)
         ##    t = t + 1
     def Think(self):
+
         self.nn.Update()
         ##self.nn.Print()
     
