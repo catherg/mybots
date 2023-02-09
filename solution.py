@@ -9,13 +9,13 @@ import time
 class SOLUTION:
     def __init__(self, nextAvailableID):
         self.myID = nextAvailableID
-        self.numSensors = numpy.random.randint(2, c.numLinks)
-        self.numMotors = self.numSensors - 1
-        self.cubepositions = {}
+        #self.numSensors = numpy.random.randint(2, c.numLinks)
+        #self.numMotors = self.numSensors - 1
+        #self.cubepositions = {}
         self.xlength = {}
-        self.weights = (numpy.random.rand(self.numSensors,self.numMotors) * self.numMotors) - 1
-        print("SENSORS:", self.numSensors)
-        print("MOTORS:", self.numMotors)
+        self.weights = (numpy.random.rand(c.numSensorNeurons,c.numMotorNeurons) * c.numMotorNeurons) - 1
+        #print("SENSORS:", self.numSensors)
+        #print("MOTORS:", self.numMotors)
         #print("WEIGHTS:",  self.weights, "\n")
         
        # self.weights = self.weights * c.numMotorNeurons - 1
@@ -54,7 +54,7 @@ class SOLUTION:
         self.cubepositions = {}
         self.xlength = {}
 
-        for i in range(self.numSensors):
+        for i in range(c.numSensorNeurons):
             rand_x = numpy.random.uniform(1,3)
             rand_y = numpy.random.uniform(1,3)
             rand_z = numpy.random.uniform(1,3)
@@ -71,7 +71,7 @@ class SOLUTION:
             self.xlength[i] = rand_x
 
         joint_pos = [0,0,1]
-        for j in range(self.numMotors):
+        for j in range(c.numMotorNeurons):
             if j == 0:
                 joint_pos[0] = self.xlength[j] / 2
                 pyrosim.Send_Joint(name = "Torso_Torso1" , parent= "Torso" , child = "Torso1" ,
@@ -134,7 +134,7 @@ class SOLUTION:
         pyrosim.Send_Motor_Neuron( name = 16 , jointName = "Leftleg_LeftLowerLeg")
 
         """
-        for i in range(self.numSensors):
+        for i in range(c.numSensorNeurons):
             if i == 0:
                 pyrosim.Send_Sensor_Neuron(name = 0 , linkName = "Torso")
                 print("0: Torso")
@@ -143,8 +143,8 @@ class SOLUTION:
                 print(i, ":   Torso" + str(i))
         
         increment = 1
-        for j in range(self.numSensors, (self.numSensors + self.numMotors)):
-            if j == self.numSensors:
+        for j in range(c.numSensorNeurons, (c.numSensorNeurons + c.numMotorNeurons)):
+            if j == c.numSensorNeurons:
                 pyrosim.Send_Motor_Neuron( name = j , jointName = "Torso_Torso1")
                 print(j, "Torso_Torso1")
             else:
@@ -157,18 +157,18 @@ class SOLUTION:
 
 
     
-        for currentRow in range(self.numSensors):
-            for currentColumn in range(self.numMotors):
-                pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn + self.numSensors ,
+        for currentRow in range(c.numSensorNeurons):
+            for currentColumn in range(c.numMotorNeurons):
+                pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn + c.numSensorNeurons ,
                 weight = self.weights[currentRow, currentColumn])
 
         pyrosim.End()
 
         
     def Mutate(self):
-        randomRow = random.randint(0,self.numSensors - 1)
-        randomColumn = random.randint(0,self.numMotors - 1)
-        self.weights[randomRow, randomColumn] = random.random() * self.numMotors - 1
+        randomRow = random.randint(0,c.numSensorNeurons - 1)
+        randomColumn = random.randint(0,c.numMotorNeurons - 1)
+        self.weights[randomRow, randomColumn] = random.random() * c.numMotorNeurons - 1
 
     def Set_ID(self, uniqueID):
         self.myID = uniqueID

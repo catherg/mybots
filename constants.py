@@ -21,10 +21,10 @@ numberofGenerations = 2
 
 populationSize = 10
 
-numMotorNeurons = 6
 
-numSensorNeurons = 7
+numSensorNeurons = numpy.random.randint(2, 8)
 
-numLinks = 6
+numMotorNeurons = numSensorNeurons - 1
+
 
 motorJointRange = 0.2
