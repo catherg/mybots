@@ -17,12 +17,14 @@ sleep = 1/20
 
 maxForce = 500
 
-numberofGenerations = 10
+numberofGenerations = 2
 
 populationSize = 10
 
 numMotorNeurons = 6
 
 numSensorNeurons = 7
+
+numLinks = 6
 
 motorJointRange = 0.2

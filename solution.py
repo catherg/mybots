@@ -9,7 +9,9 @@ import time
 class SOLUTION:
     def __init__(self, nextAvailableID):
         self.myID = nextAvailableID
-        self.weights = (numpy.random.rand(c.numSensorNeurons,c.numMotorNeurons) * c.numMotorNeurons) - 1
+        self.numSensors = numpy.random.randint(2, c.numLinks)
+        self.numMotors = self.numSensors - 1
+        self.weights = (numpy.random.rand(self.numSensors,self.numMotors) * self.numMotors) - 1
         print("WEIGHTS:",  self.weights, "\n")
         
        # self.weights = self.weights * c.numMotorNeurons - 1
@@ -81,18 +83,18 @@ class SOLUTION:
         pyrosim.Send_Motor_Neuron( name = 15 , jointName = "Rightleg_RightLowerLeg")
         pyrosim.Send_Motor_Neuron( name = 16 , jointName = "Leftleg_LeftLowerLeg")
     
-        for currentRow in range(0,c.numSensorNeurons):
-            for currentColumn in range(0,c.numMotorNeurons):
-                pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn + c.numSensorNeurons ,
+        for currentRow in range(0,self.numSensors):
+            for currentColumn in range(0,self.numMotors):
+                pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn + self.numSensors ,
                 weight = self.weights[currentRow, currentColumn])
 
         pyrosim.End()
 
         
     def Mutate(self):
-        randomRow = random.randint(0,c.numSensorNeurons - 1)
-        randomColumn = random.randint(0,c.numMotorNeurons - 1)
-        self.weights[randomRow, randomColumn] = random.random() * c.numMotorNeurons - 1
+        randomRow = random.randint(0,self.numSensors - 1)
+        randomColumn = random.randint(0,self.numMotors - 1)
+        self.weights[randomRow, randomColumn] = random.random() * self.numMotors - 1
 
     def Set_ID(self, uniqueID):
         self.myID = uniqueID
