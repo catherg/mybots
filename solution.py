@@ -13,10 +13,10 @@ class SOLUTION:
         #self.numMotors = self.numSensors - 1
         #self.cubepositions = {}
         self.xlength = {}
-        self.weights = (numpy.random.rand(c.numSensorNeurons,c.numMotorNeurons) * c.numMotorNeurons) - 1
-        #print("SENSORS:", self.numSensors)
-        #print("MOTORS:", self.numMotors)
-        #print("WEIGHTS:",  self.weights, "\n")
+        #self.weights = (numpy.random.rand(c.numSensorNeurons,c.numMotorNeurons) * c.numMotorNeurons) - 1
+        self.weights = []
+        self.sensors = []
+        self.joints = []
         
        # self.weights = self.weights * c.numMotorNeurons - 1
 
@@ -53,21 +53,30 @@ class SOLUTION:
         rand_z = numpy.random.uniform(1,3)
         self.cubepositions = {}
         self.xlength = {}
+        color_find = numpy.random.randint(0,2)
 
-        for i in range(c.numSensorNeurons):
+        for i in range(c.numLinks):
             rand_x = numpy.random.uniform(1,3)
             rand_y = numpy.random.uniform(1,3)
             rand_z = numpy.random.uniform(1,3)
+            color_find = numpy.random.randint(0,2)
             cube_size = [rand_x, rand_y, rand_z]
-            print("CUBE SIZE:", cube_size)
             if i == 0:
                 cube_pos[1] = rand_y / 2
-                pyrosim.Send_Cube(name="Torso", pos=cube_pos , size=cube_size)
+                if color_find == 1:
+                    pyrosim.Send_Cube(name="Torso", pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
+                    self.sensors.append([i, "Torso"])
+                else:
+                    pyrosim.Send_Cube(name="Torso", pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0")
+                
             
             else:
                 cube_pos[0] = rand_x / 2
-                pyrosim.Send_Cube(name="Torso" + str(i), pos=cube_pos , size=cube_size)
-                
+                if color_find == 1:
+                    pyrosim.Send_Cube(name="Torso" + str(i), pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
+                    self.sensors.append([i, "Torso" + str(i)])
+                else:
+                    pyrosim.Send_Cube(name="Torso" + str(i), pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0")       
 
             self.cubepositions[i] = cube_pos
             self.xlength[i] = rand_x
@@ -79,16 +88,17 @@ class SOLUTION:
                 joint_pos[0] = self.xlength[j] / 2
                 pyrosim.Send_Joint(name = "Torso_Torso1" , parent= "Torso" , child = "Torso1" ,
                 type = "revolute", position = joint_pos, jointAxis = "1 0 0")
-                print("Torso_Torso1")
+                self.joints.append([j, "Torso_Torso1"])
             else:
                 joint_pos = self.cubepositions[j]
                 joint_pos[0] = self.xlength[j] / 2
                 pyrosim.Send_Joint(name = "Torso" + str(j) + "_" + "Torso" + str(j + 1), parent= "Torso" + str(j) ,
                 child = "Torso" + str(j + 1), type = "revolute", position = joint_pos, jointAxis = "1 0 0")
-                print("Torso" + str(j) + "_" + "Torso" + str(j + 1))
+                self.joints.append([j,"Torso" + str(j) + "_" + "Torso" + str(j + 1)])
+            
 
-
-
+        print("number of links:", c.numLinks)
+        print("SENSOR DICTIONARY:", self.sensors, "length:", len(self.sensors))
         """
 
         pyrosim.Send_Cube(name="Torso", pos=[0,0,1] , size=[1,1,1])
@@ -112,6 +122,8 @@ class SOLUTION:
         """
 
         pyrosim.End()
+
+        self.weights = (numpy.random.rand(len(self.sensors),c.numMotorNeurons) * c.numMotorNeurons) - 1
 
 
     def Create_Brain(self):
@@ -137,17 +149,19 @@ class SOLUTION:
         pyrosim.Send_Motor_Neuron( name = 16 , jointName = "Leftleg_LeftLowerLeg")
 
         """
-        for i in range(c.numSensorNeurons):
-            if i == 0:
-                pyrosim.Send_Sensor_Neuron(name = 0 , linkName = "Torso")
-                print("0: Torso")
-            else:
-                pyrosim.Send_Sensor_Neuron(name = i , linkName = "Torso" + str(i))
-                print(i, ":   Torso" + str(i))
+        increment = 0
+        for i in self.sensors:
+           # if i[0] == 0:
+            #    pyrosim.Send_Sensor_Neuron(name = i[0] , linkName = "Torso")
+            #    print(i[0], i[1])
+            #else:
+            pyrosim.Send_Sensor_Neuron(name = increment , linkName = i[1])
+            print(increment, i[1])
+            increment += 1
         
         increment = 1
-        for j in range(c.numSensorNeurons, (c.numSensorNeurons + c.numMotorNeurons)):
-            if j == c.numSensorNeurons:
+        for j in range(len(self.sensors), (len(self.sensors) + c.numMotorNeurons)):
+            if j == len(self.sensors):
                 pyrosim.Send_Motor_Neuron( name = j , jointName = "Torso_Torso1")
                 print(j, "Torso_Torso1")
             else:
@@ -160,18 +174,21 @@ class SOLUTION:
 
 
     
-        for currentRow in range(c.numSensorNeurons):
+        for currentRow in range(len(self.sensors)):
             for currentColumn in range(c.numMotorNeurons):
-                pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn + c.numSensorNeurons ,
+                print("row:", currentRow, "column:", currentColumn)
+                pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn + len(self.sensors) ,
                 weight = self.weights[currentRow, currentColumn])
+                print("weight:", self.weights[currentRow, currentColumn])
 
         pyrosim.End()
 
         
     def Mutate(self):
-        randomRow = random.randint(0,c.numSensorNeurons - 1)
-        randomColumn = random.randint(0,c.numMotorNeurons - 1)
-        self.weights[randomRow, randomColumn] = random.random() * c.numMotorNeurons - 1
+        if len(self.sensors) > 1:
+            randomRow = random.randint(0,len(self.sensors) - 1)
+            randomColumn = random.randint(0,c.numMotorNeurons - 1)
+            self.weights[randomRow, randomColumn] = random.random() * c.numMotorNeurons - 1
 
     def Set_ID(self, uniqueID):
         self.myID = uniqueID
