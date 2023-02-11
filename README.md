@@ -2,7 +2,7 @@
 
 Running the program:
 
-1. Navigate to GitHub Desktop or Download a zip of the files in the branch jointedsnake1
+1. Navigate to GitHub Desktop or download a zip of the files in the branch jointedsnake1
 
 2. Navigate to the folder directed (catherg/mybots)
 
