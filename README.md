@@ -2,11 +2,13 @@
 
 Running the program:
 
-1. Navigate to the folder directed (catherg/mybots)
+1. Navigate to GitHub Desktop or Download a zip of the files in the branch jointedsnake1
 
-2. Confirm you are in a branch called "jointedsnake1" on your terminal
+2. Navigate to the folder directed (catherg/mybots)
 
-3. Run the program with the command: "python3 search.py"
+3. Confirm you are in a branch called "jointedsnake1" on your terminal
+
+4. Run the program with the command: "python3 search.py"
 
 
 Colors and Fitness Function:
