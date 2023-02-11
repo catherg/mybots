@@ -12,12 +12,13 @@ class SOLUTION:
         #self.numSensors = numpy.random.randint(2, c.numLinks)
         #self.numMotors = self.numSensors - 1
         #self.cubepositions = {}
-        self.first_x = 0
-        self.xlength = {}
+        self.first_y = 0
+        self.ylength = {}
         #self.weights = (numpy.random.rand(c.numSensorNeurons,c.numMotorNeurons) * c.numMotorNeurons) - 1
         self.weights = []
         self.sensors = []
         self.joints = []
+        self.cubepositions = {}
         
        # self.weights = self.weights * c.numMotorNeurons - 1
 
@@ -47,13 +48,11 @@ class SOLUTION:
     def Create_Body(self):
         pyrosim.Start_URDF("body.urdf")
         
-        cube_pos = [0,0,1]
+        cube_pos = [0,0,0]
         cube_size = [1, 1, 1]
         rand_x = numpy.random.uniform(1,3)
         rand_y = numpy.random.uniform(1,3)
         rand_z = numpy.random.uniform(1,3)
-        self.cubepositions = {}
-        self.xlength = {}
         color_find = numpy.random.randint(0,2)
 
         for i in range(c.numLinks):
@@ -64,19 +63,18 @@ class SOLUTION:
             cube_size = [rand_x, rand_y, rand_z]
             print(i, "cube_size:", cube_size)
             if i == 0:
-                self.first_x = rand_x
-                cube_pos[1] = rand_y / 2
+                self.first_y = rand_y
+                cube_pos[2] = rand_z / 2
                 self.cubepositions[i] = cube_pos
-
                 print("revised inital cube position:", cube_pos)
                 if color_find == 1:
                     pyrosim.Send_Cube(name="Torso", pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
                     self.sensors.append([i, "Torso"])
                 else:
                     pyrosim.Send_Cube(name="Torso", pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0")  
-                
+
             else:
-                cube_pos[0] = rand_x / 2
+                cube_pos[1] = rand_y / 2
                 self.cubepositions[i] = cube_pos
                 print("cube positions:", cube_pos)
                 if color_find == 1:
@@ -86,8 +84,9 @@ class SOLUTION:
                     pyrosim.Send_Cube(name="Torso" + str(i), pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0") 
       
 
-            self.xlength[i] = rand_x
+            self.ylength[i] = rand_y
             cube_pos = [0,0,0]
+            
 
         print("cube positions:", self.cubepositions)
         #print("x lengths:", self.xlength)
@@ -96,19 +95,21 @@ class SOLUTION:
         for j in range(c.numMotorNeurons):
             if j == 0:
                 joint_pos = self.cubepositions[0]
-                joint_pos[0] += joint_pos[0] / 2
+                print("INITAL JOINT POS:", joint_pos)
+                joint_pos[1] += self.ylength[j] / 2
                 pyrosim.Send_Joint(name = "Torso_Torso1" , parent= "Torso" , child = "Torso1" ,
                 type = "revolute", position = joint_pos, jointAxis = "1 0 0")
                 self.joints.append([j, "Torso_Torso1"])
+   
             else:
                 #joint_pos = self.cubepositions[j]
-                print("x-value cube positions", j , self.cubepositions[j][0])
-                joint_pos[0] = self.cubepositions[j][0] / 2
+                print("x-value cube positions", j , self.ylength[j])
+                joint_pos[1] = self.ylength[j] / 2
                 pyrosim.Send_Joint(name = "Torso" + str(j) + "_" + "Torso" + str(j + 1), parent= "Torso" + str(j) ,
                 child = "Torso" + str(j + 1), type = "revolute", position = joint_pos, jointAxis = "1 0 0")
                 self.joints.append([j,"Torso" + str(j) + "_" + "Torso" + str(j + 1)])
-            
-            
+
+            joint_pos = [0,0,0]
 
         print("number of links:", c.numLinks)
         #print("SENSOR DICTIONARY:", self.sensors, "length:", len(self.sensors))
