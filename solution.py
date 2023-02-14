@@ -18,6 +18,8 @@ class SOLUTION:
         self.weights = []
         self.sensors = []
         self.joints = []
+        self.torso_size = []
+        self.legs = [[],[],[],[]]
         self.cubepositions = {}
         
        # self.weights = self.weights * c.numMotorNeurons - 1
@@ -61,45 +63,71 @@ class SOLUTION:
             rand_z = numpy.random.uniform(1,3)
             color_find = numpy.random.randint(0,2)
             cube_size = [rand_x, rand_y, rand_z]
-            print(i, "cube_size:", cube_size)
             if i == 0:
+                self.torso_size = cube_size / 2
                 self.first_y = rand_y
                 cube_pos[2] = rand_z / 2
                 self.cubepositions[i] = cube_pos
-                print("revised inital cube position:", cube_pos)
+                
                 if color_find == 1:
                     pyrosim.Send_Cube(name="Torso", pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
                     self.sensors.append([i, "Torso"])
                 else:
-                    pyrosim.Send_Cube(name="Torso", pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0")  
+                    pyrosim.Send_Cube(name="Torso", pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0") 
+                     
+        ## section for leg creation
+        self.legs = [[-self.torso_size[0], self.torso_size[1], -self.torso_size[2]], [self.torso_size[0], self.torso_size[1], -self.torso_size[2]],
+                    [self.torso_size[0], -self.torso_size[1], -self.torso_size[2]], [-self.torso_size[0], -self.torso_size[1], -self.torso_size[2]]]
+        for i in range(1,5):
+            rand_x = numpy.random.uniform(1,3)
+            rand_y = numpy.random.uniform(1,3)
+            rand_z = numpy.random.uniform(1,3)
+            color_find = numpy.random.randint(0,2)
+            cube_size = [rand_x, rand_y, rand_z]
 
+            cube_pos = self.legs[i - 1]
+
+            self.cubepositions[i] = cube_pos
+
+                
+            if color_find == 1:
+                pyrosim.Send_Cube(name="Leg" + str(i), pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
+                self.sensors.append([i, "Leg" + str(i)])
             else:
-                cube_pos[1] = rand_y / 2
-                self.cubepositions[i] = cube_pos
-                print("cube positions:", cube_pos)
-                if color_find == 1:
-                    pyrosim.Send_Cube(name="Torso" + str(i), pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
-                    self.sensors.append([i, "Torso" + str(i)])
-                else:
-                    pyrosim.Send_Cube(name="Torso" + str(i), pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0") 
-      
+                pyrosim.Send_Cube(name="Leg" + str(i), pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0")
 
-            self.ylength[i] = rand_y
-            cube_pos = [0,0,0]
             
 
-        print("cube positions:", self.cubepositions)
-        #print("x lengths:", self.xlength)
+        ## creation of head
+        rand_x = numpy.random.uniform(1,3)
+        rand_y = numpy.random.uniform(1,3)
+        rand_z = numpy.random.uniform(1,3)
+        color_find = numpy.random.randint(0,2)
+        cube_size = [rand_x, rand_y, rand_z]
+
+        cube_pos = [self.torso_size[0], 0, self.torso_size[2]]
+
+        self.cubepositions[5] = cube_pos
+    
+        if color_find == 1:
+            pyrosim.Send_Cube(name="Head", pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
+            self.sensors.append([5, "Head"])
+        else:
+             pyrosim.Send_Cube(name="Head", pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0") 
+      
+
+        #self.ylength[i] = rand_y
+            
+    ######## CREATING JOINTS NOW #########
 
         joint_pos = [0,0,0]
-        for j in range(c.numMotorNeurons):
-            if j == 0:
-                joint_pos = self.cubepositions[0]
-                print("INITAL JOINT POS:", joint_pos)
-                joint_pos[1] += self.ylength[j] / 2
-                pyrosim.Send_Joint(name = "Torso_Torso1" , parent= "Torso" , child = "Torso1" ,
+        for j in range(1,5):
+            if j - 1 == 0:
+                ### making first joint at the forward left leg
+                joint_pos = [-self.torso_size[0], self.torso_size[1], 0]
+                pyrosim.Send_Joint(name = "Torso_Leg1", parent= "Torso" , child = "Leg1" ,
                 type = "revolute", position = joint_pos, jointAxis = "1 0 0")
-                self.joints.append([j, "Torso_Torso1"])
+                self.joints.append([j, "Torso_Leg1"])
    
             else:
                 #joint_pos = self.cubepositions[j]
