@@ -59,14 +59,14 @@ class SOLUTION:
         cube_size = [rand_x, rand_y, rand_z]
 
         ###### --- Section for Torso Creation ---- #######
-        self.torso_size = cube_size / 2
+        self.torso_size = [rand_x / 2, rand_y / 2, rand_z / 2]
         self.first_y = rand_y
         cube_pos[2] = rand_z / 2
         self.cubepositions[0] = cube_pos
                 
         if color_find == 1:
             pyrosim.Send_Cube(name="Torso", pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
-            self.sensors.append([i, "Torso"])
+            self.sensors.append([0, "Torso"])
         else:
             pyrosim.Send_Cube(name="Torso", pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0") 
                      
@@ -146,8 +146,8 @@ class SOLUTION:
 
         increment = 0
         for i in self.sensors:
-            pyrosim.Send_Sensor_Neuron(name = i , linkName = i[1])
-        increment += 1    
+            pyrosim.Send_Sensor_Neuron(name = increment , linkName = i[1])
+            increment += 1    
         
         increment = len(self.sensors)
         for j in self.joints:
