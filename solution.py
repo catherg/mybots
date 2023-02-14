@@ -61,7 +61,7 @@ class SOLUTION:
         ###### --- Section for Torso Creation ---- #######
         self.torso_size = [rand_x / 2, rand_y / 2, rand_z / 2]
         self.first_y = rand_y
-        cube_pos[2] = rand_z / 2
+        cube_pos[2] = rand_z
         self.cubepositions[0] = cube_pos
                 
         if color_find == 1:
@@ -77,17 +77,15 @@ class SOLUTION:
                     [-self.torso_size[0], -self.torso_size[1], -self.torso_size[2]],
                       [self.torso_size[0], -self.torso_size[1], -self.torso_size[2]]]
         
-        for i in range(1,5):
-            rand_x = numpy.random.uniform(1,3)
-            rand_y = numpy.random.uniform(1,3)
-            rand_z = numpy.random.uniform(1,3)
+        rand_x = numpy.random.uniform(0.2,1.5)
+        rand_y = numpy.random.uniform(0.2,1.5)
+        rand_z = numpy.random.uniform(1,3)
+        cube_size = [rand_x, rand_y, rand_z]
+
+        for i in range(1,5): 
             color_find = numpy.random.randint(0,2)
-            cube_size = [rand_x, rand_y, rand_z]
-
             cube_pos = [0,0,-(cube_size[2] / 2)]
-
-            self.cubepositions[i] = cube_pos
-    
+            self.cubepositions[i] = cube_pos    
             if color_find == 1:
                 pyrosim.Send_Cube(name="Leg" + str(i), pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
                 self.sensors.append([i, "Leg" + str(i)])
@@ -102,7 +100,7 @@ class SOLUTION:
         color_find = numpy.random.randint(0,2)
         cube_size = [rand_x, rand_y, rand_z]
 
-        cube_pos = [cube_size[0] / 2, 0, cube_size[2] / 2]
+        cube_pos = [(cube_size[0] / 2), 0, (cube_size[2] / 2)]
 
         self.cubepositions[5] = cube_pos
     
@@ -112,8 +110,6 @@ class SOLUTION:
         else:
              pyrosim.Send_Cube(name="Head", pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0") 
       
-
-        #self.ylength[i] = rand_y
             
     ######## CREATING JOINTS NOW #########
 
