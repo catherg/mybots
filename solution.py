@@ -19,7 +19,7 @@ class SOLUTION:
         self.sensors = []
         self.joints = []
         self.torso_size = []
-        self.legs = [[],[],[],[]]
+        self.legs = [[],[],[]]
         self.cubepositions = {}
         
        # self.weights = self.weights * c.numMotorNeurons - 1
