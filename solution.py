@@ -72,10 +72,10 @@ class SOLUTION:
                      
         ### ------- section for Leg Creation -------- #####
 
-        self.legs = [[-self.torso_size[0], self.torso_size[1], -self.torso_size[2]],
-                      [self.torso_size[0], self.torso_size[1], -self.torso_size[2]],
-                    [-self.torso_size[0], -self.torso_size[1], -self.torso_size[2]],
-                      [self.torso_size[0], -self.torso_size[1], -self.torso_size[2]]]
+        self.legs = [[-self.torso_size[0], self.torso_size[1], self.torso_size[2]],
+                      [self.torso_size[0], self.torso_size[1], self.torso_size[2]],
+                    [-self.torso_size[0], -self.torso_size[1], self.torso_size[2]],
+                      [self.torso_size[0], -self.torso_size[1], self.torso_size[2]]]
         
         rand_x = numpy.random.uniform(0.2,1.5)
         rand_y = numpy.random.uniform(0.2,1.5)
@@ -125,7 +125,7 @@ class SOLUTION:
 
         #### --------- creating the head joint ---------- #######
 
-        joint_pos = [self.torso_size, 0 , self.torso_size]
+        joint_pos = [self.torso_size[0], 0 , 3 * self.torso_size[2]]
         pyrosim.Send_Joint(name = "Torso_Head", parent= "Torso",
         child = "Head", type = "revolute", position = joint_pos, jointAxis = "1 0 0")
 
