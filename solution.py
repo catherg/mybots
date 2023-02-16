@@ -21,6 +21,7 @@ class SOLUTION:
         self.torso_size = []
         self.legs = [[],[],[],[]]
         self.cubepositions = {}
+        self.leg_height = 0
         
        # self.weights = self.weights * c.numMotorNeurons - 1
 
@@ -57,19 +58,20 @@ class SOLUTION:
         rand_z = numpy.random.uniform(1,3)
         color_find = numpy.random.randint(0,2)
         cube_size = [rand_x, rand_y, rand_z]
+        self.leg_height = numpy.random.uniform(1,3)
 
-        ###### --- Section for Torso Creation ---- #######
         self.torso_size = [rand_x / 2, rand_y / 2, rand_z / 2]
-        self.first_y = rand_y
-        cube_pos[2] = rand_z
+
+        ###### --------- Section For Torso Creation ----------- ############### 
+        cube_pos[2] =  self.torso_size[2] + self.leg_height
         self.cubepositions[0] = cube_pos
-                
         if color_find == 1:
             pyrosim.Send_Cube(name="Torso", pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
             self.sensors.append([0, "Torso"])
         else:
             pyrosim.Send_Cube(name="Torso", pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0") 
-                     
+
+
         ### ------- section for Leg Creation -------- #####
 
         self.legs = [[-self.torso_size[0], self.torso_size[1], self.torso_size[2]],
@@ -79,8 +81,9 @@ class SOLUTION:
         
         rand_x = numpy.random.uniform(0.2,1.5)
         rand_y = numpy.random.uniform(0.2,1.5)
-        rand_z = numpy.random.uniform(1,3)
-        cube_size = [rand_x, rand_y, rand_z]
+        #rand_z = numpy.random.uniform(1,3)
+        cube_size = [rand_x, rand_y, self.leg_height]
+
 
         for i in range(1,5): 
             color_find = numpy.random.randint(0,2)
@@ -90,8 +93,9 @@ class SOLUTION:
                 pyrosim.Send_Cube(name="Leg" + str(i), pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
                 self.sensors.append([i, "Leg" + str(i)])
             else:
-                pyrosim.Send_Cube(name="Leg" + str(i), pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0")     
+                pyrosim.Send_Cube(name="Leg" + str(i), pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0")   
 
+ 
         #### ----------- Section for Head Creation ---------- #####
 
         rand_x = numpy.random.uniform(1,3)
@@ -125,7 +129,7 @@ class SOLUTION:
 
         #### --------- creating the head joint ---------- #######
 
-        joint_pos = [self.torso_size[0], 0 , 3 * self.torso_size[2]]
+        joint_pos = [self.torso_size[0], 0 , 3 * self.torso_size[2] + rand_z]
         pyrosim.Send_Joint(name = "Torso_Head", parent= "Torso",
         child = "Head", type = "revolute", position = joint_pos, jointAxis = "1 0 0")
 
