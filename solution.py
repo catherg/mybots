@@ -44,9 +44,10 @@ class SOLUTION:
         os.system("rm " + "fitness"+ str(self.myID) + ".txt")
 
     def Create_World():
-        pyrosim.Start_SDF("world.sdf")
+        #pyrosim.Start_SDF("world.sdf")
        ## pyrosim.Send_Cube(name="Box", pos=[-2,-2,z] , size=[length,width,height])
-        pyrosim.End()
+        #pyrosim.End()
+        pass
 
     def Create_Body(self):
         pyrosim.Start_URDF("body.urdf")
@@ -143,7 +144,7 @@ class SOLUTION:
 
 
     def Create_Brain(self):
-        
+
         pyrosim.Start_NeuralNetwork("brain"+ str(self.myID) + ".nndf")
 
         increment = 0
