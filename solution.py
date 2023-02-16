@@ -143,6 +143,7 @@ class SOLUTION:
 
 
     def Create_Brain(self):
+        
         pyrosim.Start_NeuralNetwork("brain"+ str(self.myID) + ".nndf")
 
         increment = 0
