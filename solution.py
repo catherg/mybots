@@ -5,6 +5,7 @@ import sys
 import random
 import constants as c
 import time
+import pybullet
 
 class SOLUTION:
     def __init__(self, nextAvailableID):
@@ -30,6 +31,7 @@ class SOLUTION:
         self.Create_Brain()
         self.Create_Body()
         os.system("python3 simulate.py " + mode +  " " + str(self.myID) + " 2&>1 &")
+    
         #print("SIMULATION CREATED!!!!")
 
     def Wait_For_Simulation_To_End(self):
@@ -52,7 +54,7 @@ class SOLUTION:
     def Create_Body(self):
         pyrosim.Start_URDF("body.urdf")
         
-        cube_pos = [0,0,0]
+        cube_pos = [-6,4,0]
         cube_size = [1, 1, 1]
         rand_x = numpy.random.uniform(2,6)
         rand_y = numpy.random.uniform(2,6)
@@ -122,6 +124,8 @@ class SOLUTION:
         ## ------ creating the leg joints ----------- ######
         for j in range(1,5):
             joint_pos = self.legs[j - 1]
+            joint_pos[0] += -6
+            joint_pos[1] += 4
             #joint_pos[2] += self.leg_height
             pyrosim.Send_Joint(name = "Torso_Leg" + str(j), parent= "Torso",
             child = "Leg" + str(j), type = "revolute", position = joint_pos, jointAxis = "1 0 0")
@@ -131,7 +135,7 @@ class SOLUTION:
 
         #### --------- creating the head joint ---------- #######
 
-        joint_pos = [self.torso_size[0], 0 , (2 * self.torso_size[2]) + (self.leg_height)]
+        joint_pos = [self.torso_size[0] - 6, 4 , (2 * self.torso_size[2]) + (self.leg_height)]
         pyrosim.Send_Joint(name = "Torso_Head", parent= "Torso",
         child = "Head", type = "revolute", position = joint_pos, jointAxis = "1 0 0")
 
