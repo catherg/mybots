@@ -116,6 +116,31 @@ class SOLUTION:
             self.sensors.append([5, "Head"])
         else:
              pyrosim.Send_Cube(name="Head", pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0") 
+
+
+
+        ##### ----------- Section for Wing Creation ------------ ###########
+
+        for k in range(2):
+            rand_x = numpy.random.uniform(1,3)
+            rand_y = numpy.random.uniform(2,5)
+            rand_z = numpy.random.uniform(0.1,1)
+            color_find = numpy.random.randint(0,2)
+            cube_size = [rand_x, rand_y, rand_z]
+
+            if k == 0:
+                cube_pos = [0, (cube_size[1] / 2), 0]
+
+            else:
+                cube_pos = [0, -(cube_size[1] / 2), 0]
+
+            self.cubepositions[k + 6] = cube_pos
+        
+            if color_find == 1:
+                pyrosim.Send_Cube(name="Wing" + str(k), pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
+                self.sensors.append([k + 6, "Wing" + str(k)])
+            else:
+                pyrosim.Send_Cube(name="Wing" + str(k), pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0") 
       
             
     ######## CREATING JOINTS NOW #########
@@ -140,6 +165,19 @@ class SOLUTION:
         child = "Head", type = "revolute", position = joint_pos, jointAxis = "1 0 0")
 
         self.joints.append([4,"Torso_Head"])
+
+        ##### --------- creating the wing joints ---------- ############
+
+        for j in range(2):
+            if j == 0:
+                joint_pos = [-6, self.torso_size[1] + 4, self.torso_size[2] + (self.leg_height)]
+            else:
+                joint_pos = [-6, -self.torso_size[1] + 4, self.torso_size[2] + (self.leg_height)]
+
+            pyrosim.Send_Joint(name = "Torso_Wing" + str(j), parent= "Torso",
+            child = "Wing" + str(j), type = "revolute", position = joint_pos, jointAxis = "1 0 0")
+
+            self.joints.append([j + 6,"Torso_Wing" + str(j)])
 
 
         pyrosim.End()

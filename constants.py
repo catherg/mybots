@@ -25,7 +25,7 @@ populationSize = 1
 numLinks = numpy.random.randint(3, 10)
 
 
-numMotorNeurons = 4
+numMotorNeurons = 7
 
 
 motorJointRange = 0.2
