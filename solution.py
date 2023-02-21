@@ -123,8 +123,8 @@ class SOLUTION:
 
         for k in range(2):
             rand_x = numpy.random.uniform(1,3)
-            rand_y = numpy.random.uniform(2,5)
-            rand_z = numpy.random.uniform(0.1,1)
+            rand_y = numpy.random.uniform(2,6)
+            rand_z = numpy.random.uniform(0.1,2)
             color_find = numpy.random.randint(0,2)
             cube_size = [rand_x, rand_y, rand_z]
 
