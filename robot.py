@@ -2,7 +2,7 @@ import pybullet as p
 import pyrosim.pyrosim as pyrosim
 from sensor import SENSOR
 from motor import MOTOR
-import numpy
+import math
 from pyrosim.neuralNetwork import NEURAL_NETWORK
 import constants as c
 import os
@@ -30,8 +30,7 @@ class ROBOT:
         t = 0
         for linkName in pyrosim.linkNamesToIndices:
             if t == 0:
-                ##### is this how I set it properly?
-                self.sensors[linkName] = numpy.sin(c.x * k)
+                self.sensors[linkName].Set_Value(t,math.sin(c.x * k))
             self.sensors[linkName].Get_Value(t)
             t = t + 1
     def Prepare_To_Act(self):

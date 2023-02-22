@@ -57,6 +57,7 @@ class PARALLEL_HILL_CLIMBER:
     def Show_Best(self):
         lowest = 0
         for i in range(0, c.populationSize):
+            ## is this the right setting, should it be > ?
             if self.parents[i].fitness < self.parents[lowest].fitness:
                 lowest = i
 
