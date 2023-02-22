@@ -23,6 +23,7 @@ class SOLUTION:
         self.legs = [[],[],[],[]]
         self.cubepositions = {}
         self.leg_height = 0
+        self.leg_count = 4
         
        # self.weights = self.weights * c.numMotorNeurons - 1
 
@@ -218,5 +219,5 @@ class SOLUTION:
     def Set_ID(self, uniqueID):
         self.myID = uniqueID
 
-
-        
+    def Body_Mutate(self):
+        rand()
