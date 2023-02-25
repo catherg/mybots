@@ -22,10 +22,10 @@ numberofGenerations = 1
 populationSize = 1
 
 
-numLinks = numpy.random.randint(3, 10)
+numLinks = numpy.random.randint(5, 13)
 
 
 numMotorNeurons = numLinks - 1
 
-#
+
 motorJointRange = 0.2

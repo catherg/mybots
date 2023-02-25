@@ -13,12 +13,6 @@ class SOLUTION:
         #self.numMotors = self.numSensors - 1
         #self.cubepositions = {}
         self.first_y = 0
-        self.xlength = []
-        self.ylength = []
-        self.zlength = []
-        self.xtrack = 0
-        self.ytrack = 0
-        self.ztrack = 0
         #self.weights = (numpy.random.rand(c.numSensorNeurons,c.numMotorNeurons) * c.numMotorNeurons) - 1
         self.weights = []
         self.sensors = []
@@ -57,22 +51,20 @@ class SOLUTION:
         
         cube_pos = [0,0,0]
         cube_size = [1, 1, 1]
-        rand_x = numpy.random.uniform(1,3)
-        rand_y = numpy.random.uniform(1,3)
-        rand_z = numpy.random.uniform(1,3)
-        color_find = numpy.random.randint(0,2)
+        rand_x = 0
+        rand_y = 0
+        rand_z = 0
+        color_find = 0
         
         for i in range(c.numLinks):
-            #rand_x = numpy.random.uniform(1,3)
-            #rand_y = numpy.random.uniform(1,3)
-            #rand_z = numpy.random.uniform(1,3)
-            rand_x = numpy.random.randint(0,4)
-            rand_y = numpy.random.randint(0,4)
-            rand_z = numpy.random.randint(0,4)
+            rand_x = numpy.random.uniform(1,3)
+            rand_y = numpy.random.uniform(1,3)
+            rand_z = numpy.random.uniform(1,3)
             color_find = numpy.random.randint(0,2)
             cube_size = [rand_x, rand_y, rand_z]
             self.sizes[i] = cube_size
             rand_axis = numpy.random.randint(0,3)
+            cube_pos = [0,0,0]
             if i == 0:
                 cube_pos[2] = rand_z / 2
                 if color_find == 1:
@@ -80,109 +72,36 @@ class SOLUTION:
                     self.sensors.append([i, "Torso"])
                 else:
                     pyrosim.Send_Cube(name="Torso", pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0")
-                rand_axis = 3
-    ###### ------- CREATING BLOCKS FOR THE Y AXIS --------- ########
-            elif rand_axis == 1:
-                cube_pos[1] = rand_y / 2
-                if color_find == 1:
-                    pyrosim.Send_Cube(name="Cubey" + str(self.ytrack), pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
-                    self.sensors.append([i, "Cubey" + str(self.ytrack)])
-                else:
-                    pyrosim.Send_Cube(name="Cubey" + str(self.ytrack), pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0") 
-                #self.ylength.append(rand_y)
-                self.ytrack += 1
-    #### ------- CREATING BLOCKS FOR THE X AXIS --------- ########
-            elif rand_axis == 0:
-                cube_pos[0] = rand_x / 2
-                if color_find == 1:
-                    pyrosim.Send_Cube(name="Cubex" + str(self.xtrack), pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
-                    self.sensors.append([i, "Cubex" + str(self.xtrack)])
-                else:
-                    pyrosim.Send_Cube(name="Cubex" + str(self.xtrack), pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0") 
-                #self.xlength.append(rand_x)
-                self.xtrack += 1
-    ##### ------- CREATING BLOCKS FOR THE Z AXIS --------- ######## 
-            elif rand_axis == 2:
-                cube_pos[2] = rand_z / 2
-                if color_find == 1:
-                    pyrosim.Send_Cube(name="Cubez" + str(self.ztrack), pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
-                    self.sensors.append([i, "Cubez" + str(self.ztrack)])
-                else:
-                    pyrosim.Send_Cube(name="Cubez" + str(self.ztrack), pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0") 
-                #self.zlength.append(rand_z)
-                self.ztrack += 1
-
-            self.cubepositions[i] = cube_pos
-            cube_pos = [0,0,0]
-            self.randomaxis[i] = rand_axis           
-    ############## ---------- CREATING JOINT POSITIONS  ---------------- #################
-        print("AXIS:", self.randomaxis)
-        print("CUBE POSITIONS:", self.cubepositions)
-        print("CUBE SIZES:", self.sizes)
-        joint_pos = [0,0,0]
-        x_track = 0
-        y_track = 0
-        z_track = 0
-        most_recent = "cube"  
-        for j in range(c.numMotorNeurons):
-            if j == 0:
-                joint_pos = self.cubepositions[j]
-                if self.randomaxis[j + 1] == 0:
-                    joint_pos[0] += self.sizes[j][0] / 2
-                    pyrosim.Send_Joint(name = "Torso_Cubex0" , parent= "Torso" , child = "Cubex0" ,
-                    type = "revolute", position = joint_pos, jointAxis = "1 0 0")
-                    self.joints.append([j, "Torso_Cubex0"])
-                    x_track += 1
-                    most_recent = "Cubex0"
-                elif self.randomaxis[j + 1] == 1:
-                    joint_pos[1] += self.sizes[j][1] / 2
-                    pyrosim.Send_Joint(name = "Torso_Cubey0" , parent= "Torso" , child = "Cubey0" ,
-                    type = "revolute", position = joint_pos, jointAxis = "1 0 0")
-                    self.joints.append([j, "Torso_Cubey0"])
-                    y_track += 1
-                    most_recent = "Cubey0"
-                elif self.randomaxis[j + 1] == 2:
-                    joint_pos[2] += self.sizes[j][2] / 2
-                    pyrosim.Send_Joint(name = "Torso_Cubez0" , parent= "Torso" , child = "Cubez0" ,
-                    type = "revolute", position = joint_pos, jointAxis = "1 0 0")
-                    self.joints.append([j, "Torso_Cubez0"])
-                    z_track += 1
-                    most_recent = "Cubez0"
             else:
-                print("joint addition:\n last joint position", self.jointpositions[j - 1], "\ncurrent cube position:", self.cubepositions[j])
-                joint_pos = self.jointpositions[j - 1]
-                if self.randomaxis[j + 1] == 0:
-                    joint_pos[0] += self.cubepositions[j][0]
-                    joint_pos[0] += self.sizes[j][0] / 2
-                    pyrosim.Send_Joint(name = most_recent + "_Cubex" + str(x_track), parent= most_recent , child = "Cubex" + str(x_track) ,
-                    type = "revolute", position = joint_pos, jointAxis = "1 0 0")
-                    self.joints.append([j, most_recent + "_Cubex" + str(x_track)])
-                    most_recent = "Cubex" + str(x_track)
-                    x_track += 1
-                elif self.randomaxis[j + 1] == 1:
-                    joint_pos[1] += self.cubepositions[j][1]
-                    joint_pos[1] += self.sizes[j][1] / 2
-                    pyrosim.Send_Joint(name = most_recent + "_Cubey" + str(y_track), parent= most_recent , child = "Cubey" + str(y_track) ,
-                    type = "revolute", position = joint_pos, jointAxis = "1 0 0")
-                    self.joints.append([j, most_recent + "_Cubey" + str(y_track)])
-                    most_recent = "Cubey" + str(y_track)
-                    y_track += 1
-                elif self.randomaxis[j + 1] == 2:
-                    joint_pos[2] += self.cubepositions[j][2]
-                    joint_pos[2] += self.sizes[j][2] / 2
-                    pyrosim.Send_Joint(name = most_recent + "_Cubez" + str(z_track), parent= most_recent , child = "Cubez" + str(z_track) ,
-                    type = "revolute", position = joint_pos, jointAxis = "1 0 0")
-                    self.joints.append([j, most_recent + "_Cubez" + str(z_track)])
-                    most_recent = "Cubez" + str(z_track)
-                    z_track += 1
-
+                cube_pos[rand_axis] = cube_size[rand_axis] / 2
+                if color_find == 1:
+                    pyrosim.Send_Cube(name="Leg" + str(i), pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
+                    self.sensors.append([i, "Leg" + str(i)])
+                else:
+                    pyrosim.Send_Cube(name="Leg" + str(i), pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0") 
+                self.randomaxis[i - 1] = rand_axis       
+            self.cubepositions[i] = cube_pos    
+    ############## ---------- CREATING JOINT POSITIONS  ---------------- #################
+        joint_pos = [0,0,0]
+        curr_size = []
+        for j in range(c.numMotorNeurons):
+            curr_size = self.sizes[j]
+            if j == 0:
+                joint_pos = self.cubepositions[0]
+                joint_pos[self.randomaxis[j]] += curr_size[self.randomaxis[j]] / 2
+                pyrosim.Send_Joint(name = "Torso_Leg1" , parent= "Torso" , child = "Leg1" ,
+                type = "revolute", position = joint_pos, jointAxis = "1 0 0")
+                self.joints.append([j, "Torso_Leg1"])            
+            else:
+                joint_pos = [0,0,0]
+                joint_pos[self.randomaxis[j - 1]] += curr_size[self.randomaxis[j - 1]] / 2
+                joint_pos[self.randomaxis[j]] += curr_size[self.randomaxis[j]] / 2
+                pyrosim.Send_Joint(name = "Leg" + str(j) + "_Leg" + str(j + 1), parent= "Leg" + str(j) , child = "Leg" + str(j + 1) ,
+                type = "revolute", position = joint_pos, jointAxis = "1 0 0")
+                self.joints.append([j, "Leg" + str(j) + "_Leg" + str(j + 1)])          
             self.jointpositions[j] = joint_pos
-        print("JOINT POSITIONS:", self.joints)
         pyrosim.End()
-
         self.weights = (numpy.random.rand(len(self.sensors),c.numMotorNeurons) * c.numMotorNeurons) - 1
-
-
     def Create_Brain(self):
         pyrosim.Start_NeuralNetwork("brain"+ str(self.myID) + ".nndf")
 
