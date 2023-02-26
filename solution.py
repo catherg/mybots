@@ -81,6 +81,7 @@ class SOLUTION:
             self.cubepositions[i] = cube_pos    
     ############## ---------- CREATING JOINT POSITIONS  ---------------- #################
         curr_size = []
+        #rand_joint = 1
         for j in range(self.links):
             curr_size = self.sizes[j]
             joint_pos = [0,0,0]
@@ -91,6 +92,7 @@ class SOLUTION:
                 type = "revolute", position = joint_pos, jointAxis = "1 0 0")
                 self.joints.append([j, "Torso_Leg1"])            
             else:
+                #rand_joint = numpy.random.randint(1,j)
                 joint_pos[self.randomaxis[j - 1]] += curr_size[self.randomaxis[j - 1]] / 2
                 joint_pos[self.randomaxis[j]] += curr_size[self.randomaxis[j]] / 2
                 pyrosim.Send_Joint(name = "Leg" + str(j) + "_Leg" + str(j + 1), parent= "Leg" + str(j) , child = "Leg" + str(j + 1) ,
@@ -155,9 +157,7 @@ class SOLUTION:
         self.joints.append([motors, "Leg" + str(motors) + "_Leg" + str(motors + 1)])          
         self.jointpositions[motors] = joint_pos
         pyrosim.End()
-        print("passed")
-        print("NUMBER OF LINKS:", self.links)
-
+        
         #numpy.insert(self.weights, len(self.weights) - 1, numpy.random.uniform(0,4))
         temp_weights = self.weights
         self.weights = (numpy.random.rand(len(self.sensors), len(self.joints)) * len(self.joints)) - 1

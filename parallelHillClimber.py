@@ -9,6 +9,7 @@ class PARALLEL_HILL_CLIMBER:
         os.system("rm fitness*.txt")
         self.nextAvailableID = 0
         self.parents = {}
+        #self.fitness_arr = []
 
         for i in range(0, c.populationSize):
             self.parents[i] = SOLUTION(self.nextAvailableID)
@@ -57,20 +58,24 @@ class PARALLEL_HILL_CLIMBER:
 
     def Show_Best(self):
         highest = 0
-        x_array = []
         for i in range(0, c.populationSize):
             if self.parents[i].fitness > self.parents[highest].fitness:
                 highest = i
-        x_array.append(self.parents[highest].fitness)
-        print("X AXIS ARRAY:", x_array)
         print("HIGHEST:", self.parents[highest].fitness)
 
         self.parents[highest].Start_Simulation("GUI")
 
     def Evaluate(self, solutions):
+       
         for i in range(0, c.populationSize):
             solutions[i].Start_Simulation("DIRECT")
+           
 
+        highest = -50
         for i in range(0, c.populationSize):
             solutions[i].Wait_For_Simulation_To_End()
+            if solutions[i].fitness > highest:
+                highest = solutions[i].fitness
+        c.fitness_arr.append(highest)
 
+        print("FITNESS ARRAY:", c.fitness_arr)

@@ -19,7 +19,7 @@ maxForce = 500
 
 numberofGenerations = 5
 
-populationSize = 3
+populationSize = 1
 
 
 numLinks = numpy.random.randint(5, 13)
@@ -29,3 +29,5 @@ numMotorNeurons = numLinks - 1
 
 
 motorJointRange = 0.2
+
+fitness_arr = []
