@@ -56,13 +56,16 @@ class PARALLEL_HILL_CLIMBER:
             print("\n parent:", self.parents[i].fitness, "child:", self.children[i].fitness, "\n")
 
     def Show_Best(self):
-        lowest = 0
+        highest = 0
+        x_array = []
         for i in range(0, c.populationSize):
-            if self.parents[i].fitness > self.parents[lowest].fitness:
-                lowest = i
+            if self.parents[i].fitness > self.parents[highest].fitness:
+                highest = i
+        x_array.append(self.parents[highest].fitness)
+        print("X AXIS ARRAY:", x_array)
+        print("HIGHEST:", self.parents[highest].fitness)
 
-        print("LOWEST:", self.parents[lowest].fitness)
-        self.parents[lowest].Start_Simulation("GUI")
+        self.parents[highest].Start_Simulation("GUI")
 
     def Evaluate(self, solutions):
         for i in range(0, c.populationSize):

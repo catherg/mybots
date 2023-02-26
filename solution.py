@@ -49,7 +49,7 @@ class SOLUTION:
 
     def Create_Body(self):
         pyrosim.Start_URDF("body.urdf")
-        
+        print("NUMBER OF LINKS:", self.links)
         cube_pos = [0,0,0]
         cube_size = [1, 1, 1]
         rand_x = 0
@@ -80,7 +80,6 @@ class SOLUTION:
                 self.randomaxis[i - 1] = rand_axis       
             self.cubepositions[i] = cube_pos    
     ############## ---------- CREATING JOINT POSITIONS  ---------------- #################
-        print("AXIS:", self.randomaxis)
         curr_size = []
         for j in range(self.links):
             curr_size = self.sizes[j]
@@ -156,6 +155,8 @@ class SOLUTION:
         self.joints.append([motors, "Leg" + str(motors) + "_Leg" + str(motors + 1)])          
         self.jointpositions[motors] = joint_pos
         pyrosim.End()
+        print("passed")
+        print("NUMBER OF LINKS:", self.links)
 
         #numpy.insert(self.weights, len(self.weights) - 1, numpy.random.uniform(0,4))
         temp_weights = self.weights
