@@ -33,6 +33,7 @@ Creation of The Brain:
 <img src="https://user-images.githubusercontent.com/116319364/221629877-212c1f8d-d8ef-4717-88af-95945cbe35bb.jpg" width="300" height="400">
 Credit for the diagram goes to Karl Sims
 
+
 Body Mutation:
 The Body mutates by by taking a random number of 0 or 1, and if the number turns out to be 1 then the body adds another cube at a random spot, almost like adding another leg.
 
