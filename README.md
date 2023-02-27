@@ -54,7 +54,7 @@ Ex.
 
 Fitness Curves:
 
-This graph displays the curves of the highest fitness value plotted over 100 generations of 5 different creatures. The population size also differs among these creatures, with first creature having a population size of 1, the second creature having a population size of 2, etc.
+This graph displays the curves of the highest fitness value plotted over 100 generations of 5 different creatures. The population size also differs among these creatures, with the first creature having a population size of 1, the second creature having a population size of 2, etc.
 
 <img width="1244" alt="Fitness_curve" src="https://user-images.githubusercontent.com/116319364/221648528-64c77c88-4f4e-49ac-bc2f-5610fa153a01.png">
 
