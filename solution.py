@@ -49,7 +49,6 @@ class SOLUTION:
 
     def Create_Body(self):
         pyrosim.Start_URDF("body.urdf")
-        print("NUMBER OF LINKS:", self.links)
         cube_pos = [0,0,0]
         cube_size = [1, 1, 1]
         rand_x = 0
@@ -133,39 +132,41 @@ class SOLUTION:
     ### mutate body adds a leg to a random axis
     def Mutate_Body(self):
         pyrosim.Start_URDF("body.urdf")
-        self.links += 1
-        rand_axis = numpy.random.randint(0,3)
-        rand_x = numpy.random.uniform(1,3)
-        rand_y = numpy.random.uniform(1,3)
-        rand_z = numpy.random.uniform(1,5)
-        cube_size = [rand_x, rand_y, rand_z]
-        self.sizes[self.links] = cube_size
-        cube_pos = [0,0,0]
-        cube_pos[rand_axis] = cube_size[rand_axis] / 2
-        pyrosim.Send_Cube(name="Leg" + str(self.links), pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
-        self.sensors.append([self.links, "Leg" + str(self.links)])
-        self.randomaxis[self.links - 1] = rand_axis       
-        self.cubepositions[self.links] = cube_pos
+        rand_choice = numpy.random.randint(0,2)
+        if rand_choice == 1:
+            self.links += 1
+            rand_axis = numpy.random.randint(0,3)
+            rand_x = numpy.random.uniform(1,3)
+            rand_y = numpy.random.uniform(1,3)
+            rand_z = numpy.random.uniform(1,5)
+            cube_size = [rand_x, rand_y, rand_z]
+            self.sizes[self.links] = cube_size
+            cube_pos = [0,0,0]
+            cube_pos[rand_axis] = cube_size[rand_axis] / 2
+            pyrosim.Send_Cube(name="Leg" + str(self.links), pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
+            self.sensors.append([self.links, "Leg" + str(self.links)])
+            self.randomaxis[self.links - 1] = rand_axis       
+            self.cubepositions[self.links] = cube_pos
 
-        motors = self.links - 1
-        joint_pos = [0,0,0]
-        curr_size = self.sizes[motors]
-        joint_pos[self.randomaxis[motors - 1]] += curr_size[self.randomaxis[motors - 1]] / 2
-        joint_pos[self.randomaxis[motors]] += curr_size[self.randomaxis[motors]] / 2
-        pyrosim.Send_Joint(name = "Leg" + str(motors) + "_Leg" + str(motors + 1), parent= "Leg" + str(motors) , child = "Leg" + str(motors + 1) ,
-        type = "revolute", position = joint_pos, jointAxis = "1 0 0")
-        self.joints.append([motors, "Leg" + str(motors) + "_Leg" + str(motors + 1)])          
-        self.jointpositions[motors] = joint_pos
-        pyrosim.End()
+            motors = self.links - 1
+            joint_pos = [0,0,0]
+            curr_size = self.sizes[motors]
+            joint_pos[self.randomaxis[motors - 1]] += curr_size[self.randomaxis[motors - 1]] / 2
+            joint_pos[self.randomaxis[motors]] += curr_size[self.randomaxis[motors]] / 2
+            pyrosim.Send_Joint(name = "Leg" + str(motors) + "_Leg" + str(motors + 1), parent= "Leg" + str(motors) , child = "Leg" + str(motors + 1) ,
+            type = "revolute", position = joint_pos, jointAxis = "1 0 0")
+            self.joints.append([motors, "Leg" + str(motors) + "_Leg" + str(motors + 1)])          
+            self.jointpositions[motors] = joint_pos
+            pyrosim.End()
         
         #numpy.insert(self.weights, len(self.weights) - 1, numpy.random.uniform(0,4))
-        temp_weights = self.weights
-        self.weights = (numpy.random.rand(len(self.sensors), len(self.joints)) * len(self.joints)) - 1
+            temp_weights = self.weights
+            self.weights = (numpy.random.rand(len(self.sensors), len(self.joints)) * len(self.joints)) - 1
 
-        for currentRow in range(len(self.sensors) - 1):
-            for currentColumn in range(len(self.joints) - 1):
-                self.weights[currentRow, currentColumn] = temp_weights[currentRow, currentColumn]
-     
+            for currentRow in range(len(self.sensors) - 1):
+                for currentColumn in range(len(self.joints) - 1):
+                    self.weights[currentRow, currentColumn] = temp_weights[currentRow, currentColumn]
+        
 
 
 

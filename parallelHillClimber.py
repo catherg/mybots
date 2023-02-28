@@ -2,6 +2,7 @@ from solution import SOLUTION
 import constants as c
 import copy
 import os
+import matplotlib.pyplot as plt
 
 class PARALLEL_HILL_CLIMBER:
     def __init__(self):
@@ -62,8 +63,14 @@ class PARALLEL_HILL_CLIMBER:
             if self.parents[i].fitness > self.parents[highest].fitness:
                 highest = i
         print("HIGHEST:", self.parents[highest].fitness)
-
         self.parents[highest].Start_Simulation("GUI")
+        print("FITNESS ARRAY:", c.fitness_arr)
+        x_arr = []
+        for i in range(0,101):
+            x_arr.append(i)
+
+        plt.plot(x_arr, c.fitness_arr)
+        plt.show()
 
     def Evaluate(self, solutions):
        
@@ -74,8 +81,8 @@ class PARALLEL_HILL_CLIMBER:
         highest = -50
         for i in range(0, c.populationSize):
             solutions[i].Wait_For_Simulation_To_End()
-            if solutions[i].fitness > highest:
-                highest = solutions[i].fitness
+            if self.parents[i].fitness > highest:
+                highest = self.parents[i].fitness
         c.fitness_arr.append(highest)
 
-        print("FITNESS ARRAY:", c.fitness_arr)
+    
