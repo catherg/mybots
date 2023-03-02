@@ -1,16 +1,10 @@
 pybullet build time: Feb 15 2023 20:28:37
 b3Warning[examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp,126]:
 expected a world element, continuing without it.Traceback (most recent call last):
-  File "/Users/catherineguo/Documents/GitHub/mybots/simulate.py", line 17, in <module>
-    simulation.Run()
-  File "/Users/catherineguo/Documents/GitHub/mybots/simulation.py", line 27, in Run
-    self.robot.Think()
-  File "/Users/catherineguo/Documents/GitHub/mybots/robot.py", line 52, in Think
-    self.nn.Update()
-  File "/Users/catherineguo/Documents/GitHub/mybots/pyrosim/neuralNetwork.py", line 35, in Update
-    self.neurons[neuronName].Update_Sensor_Neuron()
-  File "/Users/catherineguo/Documents/GitHub/mybots/pyrosim/neuron.py", line 56, in Update_Sensor_Neuron
-    self.Set_Value(pyrosim.Get_Touch_Sensor_Value_For_Link(self.Get_Link_Name()))
-  File "/Users/catherineguo/Documents/GitHub/mybots/pyrosim/pyrosim.py", line 49, in Get_Touch_Sensor_Value_For_Link
-    desiredLinkIndex = linkNamesToIndices[linkName]
-KeyError: 'Leg9'
+  File "/Users/catherineguo/Documents/GitHub/mybots/simulate.py", line 18, in <module>
+    simulation.Get_Fitness(solutionID)
+  File "/Users/catherineguo/Documents/GitHub/mybots/simulation.py", line 36, in Get_Fitness
+    self.robot.Get_Fitness(solutionID)
+  File "/Users/catherineguo/Documents/GitHub/mybots/robot.py", line 57, in Get_Fitness
+    positionOfLinkZero = stateOfLinkZero[0]
+TypeError: 'NoneType' object is not subscriptable
