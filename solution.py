@@ -79,24 +79,28 @@ class SOLUTION:
                 self.randomaxis[i - 1] = rand_axis       
             self.cubepositions[i] = cube_pos    
     ############## ---------- CREATING JOINT POSITIONS  ---------------- #################
+    ### choose a random previous joint from the dictionaries
+    # grab the previous axis to that joint position and the axis of that joint position
+    # change the cube position to reflect that, and then record that as the new joint position
         curr_size = []
-        #rand_joint = 1
+        prev_joint = 0
         for j in range(self.links):
-            curr_size = self.sizes[j]
             joint_pos = [0,0,0]
             if j == 0:
+                curr_size = self.sizes[0]
                 joint_pos = self.cubepositions[0]
                 joint_pos[self.randomaxis[j]] += curr_size[self.randomaxis[j]] / 2
                 pyrosim.Send_Joint(name = "Torso_Leg1" , parent= "Torso" , child = "Leg1" ,
                 type = "revolute", position = joint_pos, jointAxis = "1 0 0")
                 self.joints.append([j, "Torso_Leg1"])            
             else:
-                #rand_joint = numpy.random.randint(1,j)
-                joint_pos[self.randomaxis[j - 1]] += curr_size[self.randomaxis[j - 1]] / 2
+                prev_joint = numpy.random.randint(1,len(self.jointpositions))
+                curr_size = self.sizes[prev_joint + 1]
+                joint_pos = self.cubepositions[prev_joint + 1]
                 joint_pos[self.randomaxis[j]] += curr_size[self.randomaxis[j]] / 2
-                pyrosim.Send_Joint(name = "Leg" + str(j) + "_Leg" + str(j + 1), parent= "Leg" + str(j) , child = "Leg" + str(j + 1) ,
+                pyrosim.Send_Joint(name = "Leg" + str(prev_joint) + "_Leg" + str(j + 1), parent= "Leg" + str(prev_joint) , child = "Leg" + str(j + 1) ,
                 type = "revolute", position = joint_pos, jointAxis = "1 0 0")
-                self.joints.append([j, "Leg" + str(j) + "_Leg" + str(j + 1)])          
+                self.joints.append([j, "Leg" + str(prev_joint) + "_Leg" + str(j + 1)])          
             self.jointpositions[j] = joint_pos
         pyrosim.End()
         self.weights = (numpy.random.rand(len(self.sensors), len(self.joints)) * len(self.joints)) - 1
