@@ -48,7 +48,8 @@ class SOLUTION:
         pyrosim.End()
 
     def Create_Body(self):
-        pyrosim.Start_URDF("body" +str(self.myID)+ ".urdf")
+        pyrosim.Start_URDF("body.urdf")
+        print("LINKS:", self.links)
         cube_pos = [0,0,1]
         cube_size = [1, 1, 1]
         pyrosim.Send_Cube(name="Torso", pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
@@ -68,6 +69,7 @@ class SOLUTION:
                 cube_pos[2] = rand_z / 2
                 pyrosim.Send_Cube(name="Torso", pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
                 self.sensors.append([i, "Torso"])
+                print("PASS1")
             else:
                 rand_axis = numpy.random.randint(0,3)
                 cube_pos[rand_axis] = cube_size[rand_axis] / 2
@@ -76,7 +78,8 @@ class SOLUTION:
                     self.sensors.append([i, "Leg" + str(i)])
                 else:
                     pyrosim.Send_Cube(name="Leg" + str(i), pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0") 
-                self.randomaxis[i - 1] = rand_axis       
+                self.randomaxis[i - 1] = rand_axis  
+                print("PASS!!")     
             self.cubepositions[i] = cube_pos    
     ############## ---------- CREATING JOINT POSITIONS  ---------------- #################
     ### choose a random previous joint from the dictionaries
@@ -91,6 +94,7 @@ class SOLUTION:
         self.joints.append([0, "Torso_Leg1"])
         self.jointpositions[0] = joint_pos
         for j in range(1, self.links - 1):
+            print("JOINT PASS")
             joint_pos = [0,0,0]
             if j == 1:
                 prev_joint = 1
@@ -103,6 +107,9 @@ class SOLUTION:
             type = "revolute", position = joint_pos, jointAxis = "1 0 0")
             self.joints.append([j, "Leg" + str(prev_joint) + "_Leg" + str(j + 1)])          
             self.jointpositions[j] = joint_pos
+
+        print("FINISHED")
+        print("CUBE POSITIONS:", self.cubepositions, "\nJOINT POSITIONS:", self.jointpositions)
         pyrosim.End()
         self.weights = (numpy.random.rand(len(self.sensors), len(self.joints)) * len(self.joints)) - 1
         
