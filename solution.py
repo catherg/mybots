@@ -22,7 +22,7 @@ class SOLUTION:
         self.randomaxis = {}
         self.sizes = {}
         self.links = c.numLinks - 1
-       
+        self.axis_array = [[] for j in range(c.numLinks - 1)] 
         
        # self.weights = self.weights * c.numMotorNeurons - 1
 
@@ -48,7 +48,7 @@ class SOLUTION:
         pyrosim.End()
 
     def Create_Body(self):
-        pyrosim.Start_URDF("body.urdf")
+        pyrosim.Start_URDF(f"body{self.myID}.nndf")
         cube_pos = [0,0,0]
         cube_size = [1, 1, 1]
         rand_x = 0
@@ -77,26 +77,48 @@ class SOLUTION:
                 else:
                     pyrosim.Send_Cube(name="Leg" + str(i), pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0") 
                 self.randomaxis[i - 1] = rand_axis       
-            self.cubepositions[i] = cube_pos    
+            self.cubepositions[i] = cube_pos
+        print("# OF LINKS:", c.numLinks)    
+        print("AXIS DICTIONARY:", self.randomaxis)
     ############## ---------- CREATING JOINT POSITIONS  ---------------- #################
-        curr_size = []
-        #rand_joint = 1
-        for j in range(self.links):
-            curr_size = self.sizes[j]
+     ### choose a random previous joint from the dictionaries
+    # grab the previous axis to that joint position and the axis of that joint position
+    # change the cube position to reflect that, and then record that as the new joint position
+        prev_joint = 0
+        self.axis_array = [[] for j in range(c.numLinks - 1)]
+        self.jointpositions = {}
+        #### first absolute joint created ####
+        curr_size = self.sizes[0]
+        joint_pos = self.cubepositions[0]
+        joint_pos[self.randomaxis[0]] += curr_size[self.randomaxis[0]] / 2
+        pyrosim.Send_Joint(name = "Torso_Leg1" , parent= "Torso" , child = "Leg1" , type = "revolute", position = joint_pos, jointAxis = "1 0 0")
+        self.joints.append([0, "Torso_Leg1"])
+        self.jointpositions[0] = joint_pos
+        self.axis_array[0].append(self.randomaxis[0])
+        for j in range(1, self.links):
+            print("j:", j)
             joint_pos = [0,0,0]
-            if j == 0:
-                joint_pos = self.cubepositions[0]
-                joint_pos[self.randomaxis[j]] += curr_size[self.randomaxis[j]] / 2
-                pyrosim.Send_Joint(name = "Torso_Leg1" , parent= "Torso" , child = "Leg1" ,
+            prev_joint = numpy.random.randint(0,j + 1)
+            print("JOINTS DICTIONARY LENGTH:", len(self.jointpositions))
+            print("PREVIOUS JOINT:", prev_joint)
+            while self.randomaxis[j] in self.axis_array[prev_joint]:
+                print("CHANGED AXIS ARRAY:", self.axis_array)
+                print("axis:", self.randomaxis[j])
+                prev_joint = numpy.random.randint(0,j + 1)
+                print("prev_joint:", prev_joint)
+            curr_size = self.sizes[prev_joint + 1]
+            joint_pos = self.cubepositions[prev_joint + 1]
+            joint_pos[self.randomaxis[j]] += curr_size[self.randomaxis[j]] / 2
+            self.axis_array[prev_joint].append(self.randomaxis[j])
+            print("CHANGED AXIS ARRAY:", self.axis_array)
+            if prev_joint == 0:
+                pyrosim.Send_Joint(name = "Torso_Leg" + str(j + 1), parent= "Torso" , child = "Leg" + str(j + 1) ,
                 type = "revolute", position = joint_pos, jointAxis = "1 0 0")
-                self.joints.append([j, "Torso_Leg1"])            
+                self.joints.append([j, "Torso_Leg" + str(j + 1)])          
             else:
-                #rand_joint = numpy.random.randint(1,j)
-                joint_pos[self.randomaxis[j - 1]] += curr_size[self.randomaxis[j - 1]] / 2
-                joint_pos[self.randomaxis[j]] += curr_size[self.randomaxis[j]] / 2
-                pyrosim.Send_Joint(name = "Leg" + str(j) + "_Leg" + str(j + 1), parent= "Leg" + str(j) , child = "Leg" + str(j + 1) ,
+                pyrosim.Send_Joint(name = "Leg" + str(prev_joint) + "_Leg" + str(j + 1), parent= "Leg" + str(prev_joint) , child = "Leg" + str(j + 1) ,
                 type = "revolute", position = joint_pos, jointAxis = "1 0 0")
-                self.joints.append([j, "Leg" + str(j) + "_Leg" + str(j + 1)])          
+                self.joints.append([j, "Leg" + str(prev_joint) + "_Leg" + str(j + 1)])          
             self.jointpositions[j] = joint_pos
         pyrosim.End()
         self.weights = (numpy.random.rand(len(self.sensors), len(self.joints)) * len(self.joints)) - 1
@@ -131,43 +153,7 @@ class SOLUTION:
 
     ### mutate body adds a leg to a random axis
     def Mutate_Body(self):
-        pyrosim.Start_URDF("body.urdf")
-        rand_choice = numpy.random.randint(0,2)
-        if rand_choice == 1:
-            self.links += 1
-            rand_axis = numpy.random.randint(0,3)
-            rand_x = numpy.random.uniform(1,3)
-            rand_y = numpy.random.uniform(1,3)
-            rand_z = numpy.random.uniform(1,5)
-            cube_size = [rand_x, rand_y, rand_z]
-            self.sizes[self.links] = cube_size
-            cube_pos = [0,0,0]
-            cube_pos[rand_axis] = cube_size[rand_axis] / 2
-            pyrosim.Send_Cube(name="Leg" + str(self.links), pos=cube_pos , size=cube_size, color_name = "Green", color_string = "0 180.0 0.0 1.0")
-            self.sensors.append([self.links, "Leg" + str(self.links)])
-            self.randomaxis[self.links - 1] = rand_axis       
-            self.cubepositions[self.links] = cube_pos
-
-            motors = self.links - 1
-            joint_pos = [0,0,0]
-            curr_size = self.sizes[motors]
-            joint_pos[self.randomaxis[motors - 1]] += curr_size[self.randomaxis[motors - 1]] / 2
-            joint_pos[self.randomaxis[motors]] += curr_size[self.randomaxis[motors]] / 2
-            pyrosim.Send_Joint(name = "Leg" + str(motors) + "_Leg" + str(motors + 1), parent= "Leg" + str(motors) , child = "Leg" + str(motors + 1) ,
-            type = "revolute", position = joint_pos, jointAxis = "1 0 0")
-            self.joints.append([motors, "Leg" + str(motors) + "_Leg" + str(motors + 1)])          
-            self.jointpositions[motors] = joint_pos
-            pyrosim.End()
-        
-        #numpy.insert(self.weights, len(self.weights) - 1, numpy.random.uniform(0,4))
-            temp_weights = self.weights
-            self.weights = (numpy.random.rand(len(self.sensors), len(self.joints)) * len(self.joints)) - 1
-
-            for currentRow in range(len(self.sensors) - 1):
-                for currentColumn in range(len(self.joints) - 1):
-                    self.weights[currentRow, currentColumn] = temp_weights[currentRow, currentColumn]
-        
-
+        pass
 
 
 

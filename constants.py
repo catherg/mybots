@@ -17,9 +17,9 @@ sleep = 1/20
 
 maxForce = 500
 
-numberofGenerations = 20
+numberofGenerations = 1
 
-populationSize = 5
+populationSize = 1
 
 
 numLinks = numpy.random.randint(5, 13)
