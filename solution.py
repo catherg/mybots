@@ -28,8 +28,8 @@ class SOLUTION:
 
 
     def Start_Simulation(self, mode):
-        self.Create_Brain()
         self.Create_Body()
+        self.Create_Brain()
         os.system("python3 simulate.py " + mode +  " " + str(self.myID) + " 2&>1 &")
        
     def Wait_For_Simulation_To_End(self):
@@ -54,9 +54,8 @@ class SOLUTION:
         rand_x = 0
         rand_y = 0
         rand_z = 0
-        color_find = 0
-        
-        for i in range(self.links + 1):
+        color_find = 0       
+        for i in range(c.numLinks):
             rand_x = numpy.random.uniform(1,3)
             rand_y = numpy.random.uniform(1,3)
             rand_z = numpy.random.uniform(1,3)
@@ -87,6 +86,7 @@ class SOLUTION:
         prev_joint = 0
         self.axis_array = [[] for j in range(c.numLinks - 1)]
         self.jointpositions = {}
+        self.joints = []
         #### first absolute joint created ####
         curr_size = self.sizes[0]
         joint_pos = self.cubepositions[0]
@@ -95,7 +95,7 @@ class SOLUTION:
         self.joints.append([0, "Torso_Leg1"])
         self.jointpositions[0] = joint_pos
         self.axis_array[0].append(self.randomaxis[0])
-        for j in range(1, self.links):
+        for j in range(1, c.numMotorNeurons):
             print("j:", j)
             joint_pos = [0,0,0]
             prev_joint = numpy.random.randint(0,j + 1)
@@ -121,16 +121,18 @@ class SOLUTION:
                 self.joints.append([j, "Leg" + str(prev_joint) + "_Leg" + str(j + 1)])          
             self.jointpositions[j] = joint_pos
         pyrosim.End()
-        self.weights = (numpy.random.rand(len(self.sensors), len(self.joints)) * len(self.joints)) - 1
+        self.weights = (numpy.random.rand(len(self.sensors),c.numMotorNeurons) * c.numMotorNeurons) - 1
+
+        print("JOINTS:", self.joints)
+
     def Create_Brain(self):
         pyrosim.Start_NeuralNetwork("brain"+ str(self.myID) + ".nndf")
-
         increment = 0
         for i in self.sensors:
             pyrosim.Send_Sensor_Neuron(name = increment , linkName = i[1])
-            increment += 1
-        
+            increment += 1    
         increment = len(self.sensors)
+        print("JOINTS:", self.joints)
         for j in self.joints:
             pyrosim.Send_Motor_Neuron( name = increment , jointName = j[1])          
             increment += 1
@@ -140,8 +142,7 @@ class SOLUTION:
                 pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn + len(self.sensors),
                 weight = self.weights[currentRow, currentColumn])
         pyrosim.End()
-
-        
+       
     def Mutate(self):
         if len(self.sensors) > 1:
             randomRow = random.randint(0,len(self.sensors) - 1)
