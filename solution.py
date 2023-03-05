@@ -77,8 +77,6 @@ class SOLUTION:
                     pyrosim.Send_Cube(name="Leg" + str(i), pos=cube_pos , size=cube_size, color_name = "Blue", color_string = "0 1.0 1.0 1.0") 
                 self.randomaxis[i - 1] = rand_axis       
             self.cubepositions[i] = cube_pos
-        print("# OF LINKS:", c.numLinks)    
-        print("AXIS DICTIONARY:", self.randomaxis)
     ############## ---------- CREATING JOINT POSITIONS  ---------------- #################
      ### choose a random previous joint from the dictionaries
     # grab the previous axis to that joint position and the axis of that joint position
@@ -95,22 +93,17 @@ class SOLUTION:
         self.joints.append([0, "Torso_Leg1"])
         self.jointpositions[0] = joint_pos
         self.axis_array[0].append(self.randomaxis[0])
+        print("AXIS ARRAY:", self.randomaxis)
         for j in range(1, c.numMotorNeurons):
-            print("j:", j)
-            joint_pos = [0,0,0]
             prev_joint = numpy.random.randint(0,j + 1)
-            print("JOINTS DICTIONARY LENGTH:", len(self.jointpositions))
-            print("PREVIOUS JOINT:", prev_joint)
             while self.randomaxis[j] in self.axis_array[prev_joint]:
-                print("CHANGED AXIS ARRAY:", self.axis_array)
-                print("axis:", self.randomaxis[j])
                 prev_joint = numpy.random.randint(0,j + 1)
-                print("prev_joint:", prev_joint)
             curr_size = self.sizes[prev_joint + 1]
             joint_pos = self.cubepositions[prev_joint + 1]
+            print("JOINT POSITION1:", joint_pos)
             joint_pos[self.randomaxis[j]] += curr_size[self.randomaxis[j]] / 2
+            print("JOINT POSITION2:", joint_pos)
             self.axis_array[prev_joint].append(self.randomaxis[j])
-            print("CHANGED AXIS ARRAY:", self.axis_array)
             if prev_joint == 0:
                 pyrosim.Send_Joint(name = "Torso_Leg" + str(j + 1), parent= "Torso" , child = "Leg" + str(j + 1) ,
                 type = "revolute", position = joint_pos, jointAxis = "1 0 0")
@@ -122,8 +115,6 @@ class SOLUTION:
             self.jointpositions[j] = joint_pos
         pyrosim.End()
         self.weights = (numpy.random.rand(len(self.sensors),c.numMotorNeurons) * c.numMotorNeurons) - 1
-
-        print("JOINTS:", self.joints)
 
     def Create_Brain(self):
         pyrosim.Start_NeuralNetwork("brain"+ str(self.myID) + ".nndf")
