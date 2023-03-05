@@ -45,7 +45,7 @@ class PARALLEL_HILL_CLIMBER:
     def Mutate(self):
         for i in range(0, c.populationSize):
             self.children[i].Mutate()
-            #self.children[i].Mutate_Body()
+            self.children[i].Mutate_Body()
 
     def Select(self):
         for i in range(0, c.populationSize):
