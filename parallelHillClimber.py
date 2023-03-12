@@ -6,6 +6,7 @@ import os
 class PARALLEL_HILL_CLIMBER:
     def __init__(self):
         os.system("rm brain*.nndf")
+        os.system("rm body*.nndf")
         os.system("rm fitness*.txt")
         self.nextAvailableID = 0
         self.parents = {}
@@ -62,8 +63,10 @@ class PARALLEL_HILL_CLIMBER:
             if self.parents[i].fitness > self.parents[highest].fitness:
                 highest = i
         print("HIGHEST:", self.parents[highest].fitness)
+        print("FITNESS ARRAY:", c.fitness_arr)
         self.parents[highest].Start_Simulation("GUI")
         x_arr = []
+        print("BEST PERFORMORING ID:", highest)
         for i in range(0,101):
             x_arr.append(i)
 

@@ -1,0 +1,778 @@
+<robot name = "robot">
+    <link name="Torso">
+        <inertial>
+            <origin xyz="0 0 0.8811519016161387" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0.8811519016161387" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.4111042075303362 2.925076185667176 1.7623038032322773" />
+            </geometry>
+            <material name="Green">
+                <color rgba="0 180.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0.8811519016161387" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.4111042075303362 2.925076185667176 1.7623038032322773" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg1">
+        <inertial>
+            <origin xyz="0 1.167840629197222 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 1.167840629197222 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.472895059315318 2.335681258394444 1.908118155756565" />
+            </geometry>
+            <material name="Green">
+                <color rgba="0 180.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 1.167840629197222 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.472895059315318 2.335681258394444 1.908118155756565" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg2">
+        <inertial>
+            <origin xyz="0 0 1.0488145512532663" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 1.0488145512532663" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.4491535036233447 1.2448788452945216 2.0976291025065326" />
+            </geometry>
+            <material name="Blue">
+                <color rgba="0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 1.0488145512532663" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.4491535036233447 1.2448788452945216 2.0976291025065326" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg3">
+        <inertial>
+            <origin xyz="0 1.0953013921679915 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 1.0953013921679915 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.6983022899485507 2.190602784335983 1.2121188317738654" />
+            </geometry>
+            <material name="Blue">
+                <color rgba="0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 1.0953013921679915 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.6983022899485507 2.190602784335983 1.2121188317738654" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg4">
+        <inertial>
+            <origin xyz="0 0 0.9889804401721186" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0.9889804401721186" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.30316045338936 2.6361815154122845 1.9779608803442372" />
+            </geometry>
+            <material name="Green">
+                <color rgba="0 180.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0.9889804401721186" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.30316045338936 2.6361815154122845 1.9779608803442372" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg5">
+        <inertial>
+            <origin xyz="0.8481145652252154 0 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0.8481145652252154 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.6962291304504309 1.9052756358408551 1.451951631418292" />
+            </geometry>
+            <material name="Blue">
+                <color rgba="0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.8481145652252154 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.6962291304504309 1.9052756358408551 1.451951631418292" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg6">
+        <inertial>
+            <origin xyz="1.1683947186092676 0 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="1.1683947186092676 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.336789437218535 1.6600040923143495 1.0333444369348945" />
+            </geometry>
+            <material name="Green">
+                <color rgba="0 180.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="1.1683947186092676 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.336789437218535 1.6600040923143495 1.0333444369348945" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg7">
+        <inertial>
+            <origin xyz="0 0.7231852315768931 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0.7231852315768931 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.8896500156810891 1.4463704631537861 2.8755174864967517" />
+            </geometry>
+            <material name="Green">
+                <color rgba="0 180.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0.7231852315768931 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.8896500156810891 1.4463704631537861 2.8755174864967517" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg8">
+        <inertial>
+            <origin xyz="1.1071000905913007 0 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="1.1071000905913007 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.2142001811826013 2.533616576276165 1.301929202993807" />
+            </geometry>
+            <material name="Green">
+                <color rgba="0 180.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="1.1071000905913007 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.2142001811826013 2.533616576276165 1.301929202993807" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg9">
+        <inertial>
+            <origin xyz="0 0 1.2641859077561384" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 1.2641859077561384" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.644586990673819 2.19898294545135 2.5283718155122767" />
+            </geometry>
+            <material name="Green">
+                <color rgba="0 180.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 1.2641859077561384" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.644586990673819 2.19898294545135 2.5283718155122767" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg10">
+        <inertial>
+            <origin xyz="0 0 1.0315196548187853" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 1.0315196548187853" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.3854498196971046 1.648266969959082 2.0630393096375705" />
+            </geometry>
+            <material name="Blue">
+                <color rgba="0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 1.0315196548187853" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.3854498196971046 1.648266969959082 2.0630393096375705" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg11">
+        <inertial>
+            <origin xyz="0 0.5838321796995827 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0.5838321796995827 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.4824158047985794 1.1676643593991654 2.8780939671346646" />
+            </geometry>
+            <material name="Green">
+                <color rgba="0 180.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0.5838321796995827 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.4824158047985794 1.1676643593991654 2.8780939671346646" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg12">
+        <inertial>
+            <origin xyz="0 0.5691358192266516 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0.5691358192266516 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.5097890299706884 1.1382716384533031 1.4153996013224888" />
+            </geometry>
+            <material name="Green">
+                <color rgba="0 180.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0.5691358192266516 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.5097890299706884 1.1382716384533031 1.4153996013224888" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg13">
+        <inertial>
+            <origin xyz="0 0.6654331102281688 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0.6654331102281688 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.058125377418812 1.3308662204563375 1.47150289386328" />
+            </geometry>
+            <material name="Blue">
+                <color rgba="0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0.6654331102281688 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.058125377418812 1.3308662204563375 1.47150289386328" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg14">
+        <inertial>
+            <origin xyz="0 0 0.9539428869905736" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0.9539428869905736" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.9098840740166878 2.321401915817364 1.9078857739811472" />
+            </geometry>
+            <material name="Green">
+                <color rgba="0 180.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0.9539428869905736" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.9098840740166878 2.321401915817364 1.9078857739811472" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg15">
+        <inertial>
+            <origin xyz="0 0.9867361682076424 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0.9867361682076424 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.861738873974627 1.9734723364152849 2.3421662221198924" />
+            </geometry>
+            <material name="Blue">
+                <color rgba="0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0.9867361682076424 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.861738873974627 1.9734723364152849 2.3421662221198924" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg16">
+        <inertial>
+            <origin xyz="1.283076405219517 0 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="1.283076405219517 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.566152810439034 1.2485127602542732 1.7105467617058512" />
+            </geometry>
+            <material name="Blue">
+                <color rgba="0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="1.283076405219517 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.566152810439034 1.2485127602542732 1.7105467617058512" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg17">
+        <inertial>
+            <origin xyz="0.7522865349206312 0 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0.7522865349206312 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.5045730698412625 1.571065210829485 2.903675580449401" />
+            </geometry>
+            <material name="Green">
+                <color rgba="0 180.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.7522865349206312 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.5045730698412625 1.571065210829485 2.903675580449401" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg18">
+        <inertial>
+            <origin xyz="1.3892447502738807 0 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="1.3892447502738807 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.7784895005477614 2.024234229669336 2.266817680999668" />
+            </geometry>
+            <material name="Blue">
+                <color rgba="0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="1.3892447502738807 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.7784895005477614 2.024234229669336 2.266817680999668" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg19">
+        <inertial>
+            <origin xyz="0 0.573044239141957 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0.573044239141957 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.1434466184636074 1.146088478283914 1.9483325963258098" />
+            </geometry>
+            <material name="Blue">
+                <color rgba="0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0.573044239141957 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.1434466184636074 1.146088478283914 1.9483325963258098" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg20">
+        <inertial>
+            <origin xyz="1.0073382437489276 0 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="1.0073382437489276 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.014676487497855 1.6249929479394487 1.8532979502416076" />
+            </geometry>
+            <material name="Green">
+                <color rgba="0 180.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="1.0073382437489276 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.014676487497855 1.6249929479394487 1.8532979502416076" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg21">
+        <inertial>
+            <origin xyz="1.1717571843777916 0 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="1.1717571843777916 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.3435143687555833 2.7102398145682853 2.8153784637675257" />
+            </geometry>
+            <material name="Blue">
+                <color rgba="0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="1.1717571843777916 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.3435143687555833 2.7102398145682853 2.8153784637675257" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg22">
+        <inertial>
+            <origin xyz="0.6197770474053882 0 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0.6197770474053882 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.2395540948107764 1.0371937375085623 2.2042820452866825" />
+            </geometry>
+            <material name="Green">
+                <color rgba="0 180.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.6197770474053882 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.2395540948107764 1.0371937375085623 2.2042820452866825" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg23">
+        <inertial>
+            <origin xyz="0 1.482534875657572 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 1.482534875657572 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.6937100545191623 2.965069751315144 1.3709709309876479" />
+            </geometry>
+            <material name="Green">
+                <color rgba="0 180.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 1.482534875657572 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.6937100545191623 2.965069751315144 1.3709709309876479" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg24">
+        <inertial>
+            <origin xyz="0 1.2059875546526926 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 1.2059875546526926 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.3317263518688027 2.411975109305385 1.6703089679676115" />
+            </geometry>
+            <material name="Green">
+                <color rgba="0 180.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 1.2059875546526926 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.3317263518688027 2.411975109305385 1.6703089679676115" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg25">
+        <inertial>
+            <origin xyz="0 0.8674590109940232 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0.8674590109940232 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.3130330751042134 1.7349180219880465 2.9721014607566967" />
+            </geometry>
+            <material name="Blue">
+                <color rgba="0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0.8674590109940232 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="2.3130330751042134 1.7349180219880465 2.9721014607566967" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="Leg26">
+        <inertial>
+            <origin xyz="0.8089755611699112 0 0" rpy="0 0 0"/>
+            <mass value="1" />
+            <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
+        <visual>
+            <origin xyz="0.8089755611699112 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.6179511223398224 2.8947469317139207 2.969576666692722" />
+            </geometry>
+            <material name="Blue">
+                <color rgba="0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.8089755611699112 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="1.6179511223398224 2.8947469317139207 2.969576666692722" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="Torso_Leg1" type="revolute">
+       <parent link="Torso"/>
+       <child  link="Leg1"/>
+       <origin rpy="0 0 0" xyz="0 1.462538092833588 0.8811519016161387" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Torso_Leg2" type="revolute">
+       <parent link="Torso"/>
+       <child  link="Leg2"/>
+       <origin rpy="0 0 0" xyz="0 1.167840629197222 0.9540590778782825" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg1_Leg3" type="revolute">
+       <parent link="Leg1"/>
+       <child  link="Leg3"/>
+       <origin rpy="0 0 0" xyz="0 0.6224394226472608 1.0488145512532663" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg3_Leg4" type="revolute">
+       <parent link="Leg3"/>
+       <child  link="Leg4"/>
+       <origin rpy="0 0 0" xyz="0 0 1.9779608803442372" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Torso_Leg5" type="revolute">
+       <parent link="Torso"/>
+       <child  link="Leg5"/>
+       <origin rpy="0 0 0" xyz="1.236447529657659 1.167840629197222 0.9540590778782825" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg1_Leg6" type="revolute">
+       <parent link="Leg1"/>
+       <child  link="Leg6"/>
+       <origin rpy="0 0 0" xyz="1.2245767518116724 0.6224394226472608 1.0488145512532663" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg3_Leg7" type="revolute">
+       <parent link="Leg3"/>
+       <child  link="Leg7"/>
+       <origin rpy="0 0 0" xyz="0 1.3180907577061423 1.9779608803442372" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg7_Leg8" type="revolute">
+       <parent link="Leg7"/>
+       <child  link="Leg8"/>
+       <origin rpy="0 0 0" xyz="2.2142001811826013 0 0" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg4_Leg9" type="revolute">
+       <parent link="Leg4"/>
+       <child  link="Leg9"/>
+       <origin rpy="0 0 0" xyz="0.8481145652252154 0 0.725975815709146" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg5_Leg10" type="revolute">
+       <parent link="Leg5"/>
+       <child  link="Leg10"/>
+       <origin rpy="0 0 0" xyz="1.1683947186092676 0 0.5166722184674473" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg10_Leg11" type="revolute">
+       <parent link="Leg10"/>
+       <child  link="Leg11"/>
+       <origin rpy="0 0 0" xyz="0 1.1676643593991654 0" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg7_Leg12" type="revolute">
+       <parent link="Leg7"/>
+       <child  link="Leg12"/>
+       <origin rpy="0 0 0" xyz="2.2142001811826013 1.2668082881380824 0" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg4_Leg13" type="revolute">
+       <parent link="Leg4"/>
+       <child  link="Leg13"/>
+       <origin rpy="0 0 0" xyz="0.8481145652252154 0.9526378179204276 0.725975815709146" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg12_Leg14" type="revolute">
+       <parent link="Leg12"/>
+       <child  link="Leg14"/>
+       <origin rpy="0 0 0" xyz="0 0.6654331102281688 0.73575144693164" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg12_Leg15" type="revolute">
+       <parent link="Leg12"/>
+       <child  link="Leg15"/>
+       <origin rpy="0 0 0" xyz="0 1.3308662204563375 0.73575144693164" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg9_Leg16" type="revolute">
+       <parent link="Leg9"/>
+       <child  link="Leg16"/>
+       <origin rpy="0 0 0" xyz="0.6927249098485523 0 1.0315196548187853" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg14_Leg17" type="revolute">
+       <parent link="Leg14"/>
+       <child  link="Leg17"/>
+       <origin rpy="0 0 0" xyz="1.4308694369873134 0.9867361682076424 0" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg17_Leg18" type="revolute">
+       <parent link="Leg17"/>
+       <child  link="Leg18"/>
+       <origin rpy="0 0 0" xyz="2.7784895005477614 0 0" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg17_Leg19" type="revolute">
+       <parent link="Leg17"/>
+       <child  link="Leg19"/>
+       <origin rpy="0 0 0" xyz="2.7784895005477614 1.012117114834668 0" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg3_Leg20" type="revolute">
+       <parent link="Leg3"/>
+       <child  link="Leg20"/>
+       <origin rpy="0 0 0" xyz="0.65158022669468 1.3180907577061423 1.9779608803442372" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg11_Leg21" type="revolute">
+       <parent link="Leg11"/>
+       <child  link="Leg21"/>
+       <origin rpy="0 0 0" xyz="0.7548945149853442 0.5691358192266516 0" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg21_Leg22" type="revolute">
+       <parent link="Leg21"/>
+       <child  link="Leg22"/>
+       <origin rpy="0 0 0" xyz="1.2395540948107764 0 0" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg2_Leg23" type="revolute">
+       <parent link="Leg2"/>
+       <child  link="Leg23"/>
+       <origin rpy="0 0 0" xyz="0 2.190602784335983 0" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg18_Leg24" type="revolute">
+       <parent link="Leg18"/>
+       <child  link="Leg24"/>
+       <origin rpy="0 0 0" xyz="0 1.146088478283914 0" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg11_Leg25" type="revolute">
+       <parent link="Leg11"/>
+       <child  link="Leg25"/>
+       <origin rpy="0 0 0" xyz="0.7548945149853442 1.1382716384533031 0" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+    <joint name="Leg2_Leg26" type="revolute">
+       <parent link="Leg2"/>
+       <child  link="Leg26"/>
+       <origin rpy="0 0 0" xyz="0.8491511449742754 2.190602784335983 0" />
+     <axis xyz="1 0 0"/>
+       <limit effort="0.0" lower="-3.14159" upper="3.14159" velocity="0.0"/>
+    </joint>
+</robot>

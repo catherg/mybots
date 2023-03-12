@@ -13,8 +13,9 @@ class ROBOT:
         self.Prepare_To_Sense()
         self.Prepare_To_Act()
         self.nn = NEURAL_NETWORK("brain"+ solutionID +".nndf")
+        ## maybe have to comment these two out or fix it somehow?
         #os.system("rm " + "brain"+ solutionID +".nndf")
-       # os.system("rm " + "body"+ solutionID +".nndf")
+        #os.system("rm " + "body"+ solutionID +".nndf")
 
 
 

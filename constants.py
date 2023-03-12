@@ -17,12 +17,12 @@ sleep = 1/20
 
 maxForce = 500
 
-numberofGenerations = 1
+numberofGenerations = 100
 
-populationSize = 1
+populationSize = 10
 
 
-numLinks = numpy.random.randint(5, 13)
+numLinks = numpy.random.randint(2, 10)
 
 
 numMotorNeurons = numLinks - 1
