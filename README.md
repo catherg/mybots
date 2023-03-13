@@ -4,13 +4,19 @@ This program was created using r/ludobots and pyrosim.
 
 Running the program:
 
-1. Navigate to GitHub Desktop or download a zip of the files in the branch morphology1
+1. Navigate to GitHub Desktop or download a zip of the files in the branch final1
 
 2. Open the zipped file or navigate to the folder directed (catherg/mybots) on your terminal
 
-3. Confirm you are in a branch called "morphology1" on your terminal
+3. Confirm you are in a branch called "final1" on your terminal
 
 4. Run the program with the command: "python3 search.py"
+
+5. The best performing body and brain is saved in this repository as experiment1_body(givenID), experiment1_brain(givenID), etc.
+
+6. If needed, run 
+
+7. 
 
 
 Randomization, Sensors, and Fitness Function:
