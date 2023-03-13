@@ -2,7 +2,7 @@ import constants as c
 import matplotlib.pyplot as plt
 
 x_arr = []
-for i in range(0,101):
+for i in range(0,301):
     x_arr.append(i)
 
 first_arr =  [4.057293526426777, 4.057293526426777, 4.057293526426777, 4.057293526426777, 4.057293526426777, 4.585566219005418,
@@ -99,9 +99,9 @@ third_arr = [6.1701210522791925, 6.1701210522791925, 6.1701210522791925, 6.17012
             24.97965820591484, 24.97965820591484, 24.97965820591484, 24.97965820591484, 24.97965820591484, 24.97965820591484]
 
 
-plt.plot(x_arr, first_arr, label = "creature 1")
-plt.plot(x_arr, fifth_arr, label = "creature 2")
-plt.plot(x_arr, second_arr, label = "creature 3")
+plt.plot(x_arr, first_arr, label = "experiment 1")
+#plt.plot(x_arr, fifth_arr, label = "creature 2")
+#plt.plot(x_arr, second_arr, label = "creature 3")
 plt.xlabel("Number of Generations")
 plt.ylabel("Fitness Value")
 plt.legend()
