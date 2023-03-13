@@ -144,9 +144,9 @@ class SOLUTION:
 
     ### mutate body adds a leg to a random axis
     def Mutate_Body(self):
-        print("NUMBER OF JOINTS:", len(self.joints))
+        #print("NUMBER OF JOINTS:", len(self.joints))
         random_choice = numpy.random.randint(0,2)
-        print("RANDOM CHOICE:", random_choice)
+        #print("RANDOM CHOICE:", random_choice)
         if random_choice == 1:
             ## randomize self.myID
             random = self.myID * 1000000
