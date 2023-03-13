@@ -15,7 +15,7 @@ Running the program:
 5. The best performing body and brain is saved in this repository as experiment1_body(givenID), experiment1_brain(givenID), etc.
 
 6. If needed, run the best performing body in each experiment using these files (delete the "experiment1_" tag in the name before you run it)
- - These files can be run in solution and parallelhillclimber
+        - These files can be run in solution and parallelhillclimber
 
 
 Randomization, Sensors, and Fitness Function:
