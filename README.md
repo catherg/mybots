@@ -14,9 +14,8 @@ Running the program:
 
 5. The best performing body and brain is saved in this repository as experiment1_body(givenID), experiment1_brain(givenID), etc.
 
-6. If needed, run 
-
-7. 
+6. If needed, run the best performing body in each experiment using these files (delete the "experiment1_" tag in the name before you run it)
+ - These files can be run in solution and parallelhillclimber
 
 
 Randomization, Sensors, and Fitness Function:
@@ -41,9 +40,10 @@ Creation of The Brain:
 Credit for the diagram goes to Karl Sims
 
 
+
 Body Mutation:
 
-The Body mutates by by taking a random number of 0 or 1, and if the number turns out to be 1 then the body adds another cube at a random spot, almost like adding another leg.
+The Body mutates by by taking a random number of 0 or 1, and if the number turns out to be 1 then the body adds another completely randomized cube at a random axis and cube onto the body.
 
 Morphospace:
 
@@ -53,17 +53,27 @@ There are many brains which are possible based on the cubes that become sensor n
 
 Optimization Results/Observed Behavior:
 
-The optimization results were that the creature jumped more, usually higher as well. And with this jumping the creature also started moving a bit.
+The optimization results were that the creature moved and wiggled more. With the wiggling and the small jumps, the creature traveled further back than when was completely randomized.
   
 Ex.
 <img width="600" alt="A8_screenshot" src="https://user-images.githubusercontent.com/116319364/221630175-30ac4c45-940b-42ae-ac1a-9cf79a94d699.png">
 
 Fitness Curves:
 
-This graph displays the curves of the highest fitness value plotted over 100 generations of 5 different creatures. The population size also differs among these creatures, with the first creature having a population size of 1, the second creature having a population size of 2, etc.
+Experiment 1 Fitness Curve:
 
-<img width="1244" alt="Fitness_curve" src="https://user-images.githubusercontent.com/116319364/221648528-64c77c88-4f4e-49ac-bc2f-5610fa153a01.png">
+This curve shows the results of the first experiment, where the number of joints was restricted to 15, meaning the creature could not be comprised of over 16 cubes. This experiment was run for 300 generations and the best fitness value of each generation was plotted.
 
+<img width="800" alt="experiment 1" src="https://user-images.githubusercontent.com/116319364/224845913-8adf79f3-2738-4253-ab26-cead541e54d9.png">
 
+Experiment 2 Fitness Curve:
 
+This curve shows the results of the second experiment, where the number of joints was restricted to 20, meaning the creature could not be comprised of over 21 cubes. This experiment was run for 150 generations and the best fitness value of each generation was plotted.
 
+<img width="800" alt="experiment 2" src="https://user-images.githubusercontent.com/116319364/224845951-ada73b27-7c82-40a4-b0e5-d887c09c840c.png">
+
+Experiment 3 Fitness Curve:
+
+This curve shows the results of the third experiment, where there was no restrictions on the number of cuves or joints that the creature could possess. This experiment was run for 100 generations and the best fitness value of each generation was plotted.
+
+<img width="800" alt="experiment 3" src="https://user-images.githubusercontent.com/116319364/224845966-e8a1a313-ec0b-43e3-b9ee-d8ffbbf525f8.png">
