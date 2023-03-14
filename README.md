@@ -27,7 +27,7 @@ I will be conducting three experiments and determining under which experiment th
         
 After calculating the time it takes to produce one simulation(~30 seconds), it wasn't plausible for me to produce 50,000 simulations, so instead of doing a total of 500 generations over 10 seeds I made the constant of each experiment time. After experimenting with the time needed to run each simulation for the different experiments, I chose to have each experiment take 8 hours to run. Another constant in these experiments is the population size, which always stays at 10. Since I will only be doing three experiments, I used 3 seeds, one for each experiment.
 
-I tested these experiments by making the body mutate (look at "Body and Brain Mutation" Section, line 64) randomly every generation. The control experiment in this case was experiment 1, which restricted the robot to have 16 joints. I did this by inserting this piece of code:
+I tested these experiments by making the body mutate (look at "Body and Brain Mutation" Section, line 64) randomly every generation. The control experiment in this case was experiment 1, which restricted the robot to have 15 joints. I did this by inserting this piece of code:
 
 <img width="209" alt="control_experiment" src="https://user-images.githubusercontent.com/116319364/224863503-4de32fb3-1bda-4ec1-9c3a-5c40f039c278.png">
 
