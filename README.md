@@ -34,7 +34,10 @@ These two lines made it so that if the robot was at the largest size possible, i
 
 The inspiration for this experiment came from and question I had about how robots of different sizes could complete certain tasks, and what the optimal size and mutation for the body would be to complete a simple task like walking or "marching to the beat".
 
-/********* DRAW A PICTURE OF THIS EXPERIMENT
+<img src="https://user-images.githubusercontent.com/116319364/225073454-22a28ea8-c4a2-4a12-a79e-46f7ff90980d.jpg" height="600">
+
+###### Credit for the diagram goes to Karl Sims
+
 
 #### Hypothesis:
 
@@ -85,7 +88,7 @@ There are many brains which are possible based on the cubes that become sensor n
 
 #### Process of Selection:
 
-<img src="https://user-images.githubusercontent.com/116319364/224873671-543bfc69-4206-4de2-af83-e3840eec80f6.jpg" width="530" height="600">
+<img src="https://user-images.githubusercontent.com/116319364/224873671-543bfc69-4206-4de2-af83-e3840eec80f6.jpg" width="330" height="400">
 
 ###### Credit for the diagram goes to Karl Sims
 
