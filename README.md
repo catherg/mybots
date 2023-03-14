@@ -79,6 +79,12 @@ The movements that seem to be possible with this creature are primarily with jum
 
 There are many brains which are possible based on the cubes that become sensor neurons. The brain and synpases are based off of the amount of sensor neurons the random function decides to generate. There could be a type of brain where everything has a synapse and can faciliate movement, and there can also be a type of brain with no synpases or movement. With what I have observed, it seems that there is a sensor that can affect a motor on the other side of the body, a sensor can definitly impact different parts of the body but to have a noticeable effect that depend on the sizing of the cubes.
 
+Process of Selection:
+
+<img src="https://user-images.githubusercontent.com/116319364/224873671-543bfc69-4206-4de2-af83-e3840eec80f6.jpg" width="530" height="600">
+
+/**** explain process of selection ***/////
+
 Optimization Results/Observed Behavior:
 
 The optimization results were that the creature moved and wiggled more. With the wiggling and the small jumps, the creature was able to travel further back compared to when was completely randomized.
@@ -110,3 +116,8 @@ This curve shows the results of the third experiment, where there was no restric
 <img width="550" alt="experiment 3" src="https://user-images.githubusercontent.com/116319364/224845966-e8a1a313-ec0b-43e3-b9ee-d8ffbbf525f8.png">
 
 Final Results:
+/*** Write your final results ***/
+
+Teaser Gif: https://youtu.be/vaGEQaG1vvg
+
+2 Minute Video:
