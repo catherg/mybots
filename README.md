@@ -90,7 +90,7 @@ There are many brains which are possible based on the cubes that become sensor n
 
 #### Process of Selection:
 
-<img src="https://user-images.githubusercontent.com/116319364/224873671-543bfc69-4206-4de2-af83-e3840eec80f6.jpg" width="330" height="400">
+<img src="https://user-images.githubusercontent.com/116319364/224873671-543bfc69-4206-4de2-af83-e3840eec80f6.jpg" width="440" height="500">
 
 ###### Credit for the diagram goes to Karl Sims
 
