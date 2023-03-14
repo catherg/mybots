@@ -148,4 +148,4 @@ I would further explore the symmetry in these robots if I had more time, and I w
 
 #### Teaser Gif: https://youtu.be/vaGEQaG1vvg
 
-#### 2 Minute Video:
+#### 2 Minute Video:https://youtu.be/rAyzGG67TB0
