@@ -144,9 +144,7 @@ class SOLUTION:
 
     ### mutate body adds a leg to a random axis
     def Mutate_Body(self):
-        #print("NUMBER OF JOINTS:", len(self.joints))
         random_choice = numpy.random.randint(0,2)
-        #print("RANDOM CHOICE:", random_choice)
         if len(self.joints) >= 15:
             random_choice = 0
         if random_choice == 1:
