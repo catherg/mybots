@@ -53,10 +53,11 @@ There are many brains which are possible based on the cubes that become sensor n
 
 Optimization Results/Observed Behavior:
 
-The optimization results were that the creature moved and wiggled more. With the wiggling and the small jumps, the creature traveled further back than when was completely randomized.
+The optimization results were that the creature moved and wiggled more. With the wiggling and the small jumps, the creature was able to travel further back compared to when was completely randomized.
   
 Ex.
-<img width="600" alt="A8_screenshot" src="https://user-images.githubusercontent.com/116319364/221630175-30ac4c45-940b-42ae-ac1a-9cf79a94d699.png">
+<img width="261" alt="experiment1_pic" src="https://user-images.githubusercontent.com/116319364/224860467-9a49f74a-09cd-4c0d-9f7d-2ddccf9d1211.png">
+
 
 Fitness Curves:
 
