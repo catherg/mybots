@@ -17,7 +17,9 @@ Running the program:
 6. If needed, run the best performing body in each experiment using these files (delete the "experiment1_" tag in the name before you run it)
         - These files can be run in solution and parallelhillclimber
 
-Experiment: 
+Note about running the program: If there are issues with the fitness value being read, run it again and it should be read fine (this error occurs sometimes when running a large number of generations)
+
+Experiment/How I tested it: 
 
 The task of the creature is to march to the beat, meaning that they will be walking with small wiggles and jumps in between steps. As the generations continue, the creature will randomly mutate by a random cube being added to any axis, and the brain then adding this neuron. 
         
@@ -25,9 +27,19 @@ I will be conducting three experiments and determining under which experiment th
         
 After calculating the time it takes to produce one simulation(~30 seconds), it wasn't plausible for me to produce 50,000 simulations, so instead of doing a total of 500 generations over 10 seeds I made the constant of each experiment time. After experimenting with the time needed to run each simulation for the different experiments, I chose to have each experiment take 8 hours to run. Another constant in these experiments is the population size, which always stays at 10. Since I will only be doing three experiments, I used 3 seeds, one for each experiment.
 
+I tested these experiments by making the body mutate (look at "Body and Brain Mutation" Section, line 64) randomly every generation. The control experiment in this case was experiment 1, which restricted the robot to have 16 joints. I did this by inserting this piece of code:
+<img width="209" alt="control_experiment" src="https://user-images.githubusercontent.com/116319364/224863503-4de32fb3-1bda-4ec1-9c3a-5c40f039c278.png">
+
+These two lines made it so that if the robot was at the largest size possible, it would completely skip over the mutation of the body and not change anything. I made this into my control experiment because I isolated the variable of interest which was the number of cubes.
+
+The inspiration for this experiment came from and question I had about how robots of different sizes could complete certain tasks, and what the optimal size and mutation for the body would be to complete a simple task like walking or "marching to the beat".
+
+/********* DRAW A PICTURE OF THIS EXPERIMENT
+
 Hypothesis:
 
 I believe that the first experiment with a restriction on 15 cubes will perform the task the best. This is because I believe 15 cubes is enough for the sensors and the brain to have optimal control when doing this task. Once the creature gets larger and gains more cubes. It would become too heavy and chaotic to march to the beat very well.
+
 
 Randomization, Sensors, and Fitness Function:
 
@@ -42,18 +54,24 @@ Creation of The Body:
 
 I chose to completely randomize the creation of the body. I chose for the first cube always be positioned at 0,0 on the x and y axis. I also randomized the placement of all the other cubes so that they could be on either the x, y, and z axis. I always placed the joint in the middle of the cube, but when placing a new joint I took a random joint from the preexisting ones to work off.
 
-<img src="https://user-images.githubusercontent.com/116319364/221641885-144c637e-0953-434d-890f-070659fdbc1c.jpg" width="500" height="400">
+<img src="https://user-images.githubusercontent.com/116319364/224866465-de44f1f3-fd98-4b50-8a33-85560598d993.jpg" width="500" height="400">
+
 Credit for the diagram goes to Karl Sims
 
 Creation of The Brain:
 
-<img src="https://user-images.githubusercontent.com/116319364/221642016-710c990e-ed7f-4558-a42d-a227d7093e29.jpg" width="500" height="400">
+<img src="https://user-images.githubusercontent.com/116319364/224868684-113d2e00-5dc3-4223-bb8a-bd7b3dc509a9.jpg" width="500" height="300">
+
+
+
 Credit for the diagram goes to Karl Sims
 
 
-Body Mutation:
+Body and Brain Mutation:
 
 The Body mutates by by taking a random number of 0 or 1, and if the number turns out to be 1 then the body adds another completely randomized cube at a random axis and cube onto the body.
+
+<img src="https://user-images.githubusercontent.com/116319364/224866129-f5f47402-1cab-439b-aa1c-d2110ef8786a.jpg" width="500" height="400">
 
 Morphospace:
 
