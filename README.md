@@ -83,7 +83,7 @@ Since these mutations are random, the offspring produced from the parents are al
 
 #### Morphospace:
 
-The movements that seem to be possible with this creature are primarily with jumping and "marching to the beat". If the creature had more support on the lower half of its body it would be able to move forward better and potentailly be more stable and jump higher. It seems like the more sensor neurons are concentrated in an area, the more movement that area has.
+The movements that seem to be possible with this creature are primarily just wiggles. These wiggles seem to be more prominent when the creatyre develops arms. It seems like the more sensor neurons are concentrated in an area, the more movement that area has.
 
 There are many brains which are possible based on the cubes that become sensor neurons. The brain and synpases are based off of the amount of sensor neurons the random function decides to generate. There could be a type of brain where everything has a synapse and can faciliate movement, and there can also be a type of brain with no synpases or movement. With what I have observed, it seems that there is a sensor that can affect a motor on the other side of the body, a sensor can definitly impact different parts of the body but to have a noticeable effect that depend on the sizing of the cubes.
 
