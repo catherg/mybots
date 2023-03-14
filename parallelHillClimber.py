@@ -63,7 +63,7 @@ class PARALLEL_HILL_CLIMBER:
             if self.parents[i].fitness > self.parents[highest].fitness:
                 highest = i
         print("HIGHEST:", self.parents[highest].fitness)
-        print("FITNESS ARRAY:", c.fitness_arr)
+        #print("FITNESS ARRAY:", c.fitness_arr)
         self.parents[highest].Start_Simulation("GUI")
 
         

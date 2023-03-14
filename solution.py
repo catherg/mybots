@@ -147,6 +147,8 @@ class SOLUTION:
         #print("NUMBER OF JOINTS:", len(self.joints))
         random_choice = numpy.random.randint(0,2)
         #print("RANDOM CHOICE:", random_choice)
+        if len(self.joints) >= 15:
+            random_choice = 0
         if random_choice == 1:
             ## randomize self.myID
             random = self.myID * 1000000
