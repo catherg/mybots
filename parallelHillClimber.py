@@ -65,10 +65,6 @@ class PARALLEL_HILL_CLIMBER:
         print("HIGHEST:", self.parents[highest].fitness)
         print("FITNESS ARRAY:", c.fitness_arr)
         self.parents[highest].Start_Simulation("GUI")
-        x_arr = []
-        #print("BEST PERFORMORING ID:", highest)
-        for i in range(0,101):
-            x_arr.append(i)
 
         
 
