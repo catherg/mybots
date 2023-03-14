@@ -1,4 +1,4 @@
-# mybots
+# CS 396: Final Project (Science Option, 16pts)
 
 This program was created using r/ludobots and pyrosim.
 
@@ -17,6 +17,17 @@ Running the program:
 6. If needed, run the best performing body in each experiment using these files (delete the "experiment1_" tag in the name before you run it)
         - These files can be run in solution and parallelhillclimber
 
+Experiment: 
+
+The task of the creature is to march to the beat, meaning that they will be walking with small wiggles and jumps in between steps. As the generations continue, the creature will randomly mutate by a random cube being added to any axis, and the brain then adding this neuron. 
+        
+I will be conducting three experiments and determining under which experiment the creature performs the best in. The first experiment contains a population size of 10 and a total of 300 generations, in the first experiment the creature cannot spawn more than 15 cubes. The second experiment contains a population size of 10 and a total of 150 generations, and in this experiment the creature cannot spawn more than 20 cubes. The last experiment contains a population size of 10 over 100 generations, and in this experiment the creature can spawn as many cubes as it is able to.
+        
+After calculating the time it takes to produce one simulation(~30 seconds), it wasn't plausible for me to produce 50,000 simulations, so instead of doing a total of 500 generations over 10 seeds I made the constant of each experiment time. After experimenting with the time needed to run each simulation for the different experiments, I chose to have each experiment take 8 hours to run. Another constant in these experiments is the population size, which always stays at 10. Since I will only be doing three experiments, I used 3 seeds, one for each experiment.
+
+Hypothesis:
+
+I believe that the first experiment with a restriction on 15 cubes will perform the task the best. This is because I believe 15 cubes is enough for the sensors and the brain to have optimal control when doing this task. Once the creature gets larger and gains more cubes. It would become too heavy and chaotic to march to the beat very well.
 
 Randomization, Sensors, and Fitness Function:
 
@@ -40,7 +51,6 @@ Creation of The Brain:
 Credit for the diagram goes to Karl Sims
 
 
-
 Body Mutation:
 
 The Body mutates by by taking a random number of 0 or 1, and if the number turns out to be 1 then the body adds another completely randomized cube at a random axis and cube onto the body.
@@ -58,6 +68,8 @@ The optimization results were that the creature moved and wiggled more. With the
 Ex.
 <img width="261" alt="experiment1_pic" src="https://user-images.githubusercontent.com/116319364/224860467-9a49f74a-09cd-4c0d-9f7d-2ddccf9d1211.png">
 
+(Picture was taken from the creature produced in experiment 1)
+
 
 Fitness Curves:
 
@@ -65,16 +77,18 @@ Experiment 1 Fitness Curve:
 
 This curve shows the results of the first experiment, where the number of joints was restricted to 15, meaning the creature could not be comprised of over 16 cubes. This experiment was run for 300 generations and the best fitness value of each generation was plotted.
 
-<img width="800" alt="experiment 1" src="https://user-images.githubusercontent.com/116319364/224845913-8adf79f3-2738-4253-ab26-cead541e54d9.png">
+<img width="550" alt="experiment 1" src="https://user-images.githubusercontent.com/116319364/224845913-8adf79f3-2738-4253-ab26-cead541e54d9.png">
 
 Experiment 2 Fitness Curve:
 
 This curve shows the results of the second experiment, where the number of joints was restricted to 20, meaning the creature could not be comprised of over 21 cubes. This experiment was run for 150 generations and the best fitness value of each generation was plotted.
 
-<img width="800" alt="experiment 2" src="https://user-images.githubusercontent.com/116319364/224845951-ada73b27-7c82-40a4-b0e5-d887c09c840c.png">
+<img width="550" alt="experiment 2" src="https://user-images.githubusercontent.com/116319364/224845951-ada73b27-7c82-40a4-b0e5-d887c09c840c.png">
 
 Experiment 3 Fitness Curve:
 
 This curve shows the results of the third experiment, where there was no restrictions on the number of cuves or joints that the creature could possess. This experiment was run for 100 generations and the best fitness value of each generation was plotted.
 
-<img width="800" alt="experiment 3" src="https://user-images.githubusercontent.com/116319364/224845966-e8a1a313-ec0b-43e3-b9ee-d8ffbbf525f8.png">
+<img width="550" alt="experiment 3" src="https://user-images.githubusercontent.com/116319364/224845966-e8a1a313-ec0b-43e3-b9ee-d8ffbbf525f8.png">
+
+Final Results:
